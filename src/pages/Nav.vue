@@ -6,6 +6,10 @@
     <nav
         class="top-0 inset-x-0 fixed bg-gray-50 h-14 z-30 transition-position w-screen lg:w-auto dark:bg-slate-800 xl:pl-60">
         <div class="flex lg:items-stretch xl:max-w-6xl xl:mx-auto">
+            
+
+ 
+
             <div class="flex flex-1 items-stretch h-14">
                 <div
                     class="flex lg:hidden py-2 px-3 navbar-item-label items-center cursor-pointer dark:text-white dark:hover:text-slate-400">

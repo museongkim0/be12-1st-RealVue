@@ -23,6 +23,7 @@ const userData = ref([
         <div class="justify-between items-center flex mb-3">
           
           <div class="flex items-center justify-center">
+            <router-link to="/manager/attendanceManage">
             <button
               class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-gray-100 dark:border-slate-800 ring-gray-200 dark:ring-gray-500 bg-gray-100 text-black dark:bg-slate-800 dark:text-white hover:bg-gray-200 hover:dark:bg-slate-700 p-1"
               type="button"
@@ -42,6 +43,7 @@ const userData = ref([
                   ></path></svg></span
               ><!---->
             </button>
+        </router-link>
           </div>
         </div>
         <div class="justify-between items-center flex">

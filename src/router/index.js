@@ -14,6 +14,7 @@ import List from '../pages/manager/List.vue';
 import StudentList from '../pages/manager/StudentList.vue';
 import InstructorList from '../pages/manager/InstructorList.vue';
 import ManagerList from '../pages/manager/ManagerList.vue';
+import AttendanceManage from '../pages/manager/AttendanceManage.vue';
 const router = createRouter({
     history: createWebHistory(),
     routes : [
@@ -25,7 +26,7 @@ const router = createRouter({
         { path: '/manager/studentList', component: StudentList },
         { path: '/manager/instructorList', component: InstructorList },
         { path: '/manager/managerList', component: ManagerList },
-
+        { path: '/manager/attendanceManage', component: AttendanceManage},
         // { path: '/c', component: Create },
         // { path: '/d', component: Signup },
         // { path: '/e', component: Login },

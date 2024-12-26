@@ -1,97 +1,543 @@
+<script setup>
+import { ref } from 'vue';
+
+// Drawer의 열림 상태를 관리하는 변수
+const isDrawerOpen = ref(false);
+
+// Drawer를 열거나 닫는 함수
+const toggleDrawer = () => {
+   isDrawerOpen.value = !isDrawerOpen.value;
+};
+</script>
 
 
-<script setup></script>
-
-
-<!-- 
-<div class="text-center">
-    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
-    Show navigation
-    </button>
- </div>
- 
- <div id="drawer-navigation" class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-navigation-label">
-     <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5>
-     <button type="button" data-drawer-hide="drawer-navigation" aria-controls="drawer-navigation" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" >
-         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-         <span class="sr-only">Close menu</span>
-     </button>
-   <div class="py-4 overflow-y-auto">
-       <ul class="space-y-2 font-medium">
-          <li>
-             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
-                   <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
-                   <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
-                </svg>
-                <span class="ms-3">Dashboard</span>
-             </a>
-          </li>
-          <li>
-             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                   <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
-                </svg>
-                <span class="flex-1 ms-3 whitespace-nowrap">Kanban</span>
-                <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span>
-             </a>
-          </li>
-          <li>
-             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                   <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z"/>
-                </svg>
-                <span class="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-                <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
-             </a>
-          </li>
-          <li>
-             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-                   <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
-                </svg>
-                <span class="flex-1 ms-3 whitespace-nowrap">Users</span>
-             </a>
-          </li>
-          <li>
-             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                   <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z"/>
-                </svg>
-                <span class="flex-1 ms-3 whitespace-nowrap">Products</span>
-             </a>
-          </li>
-          <li>
-             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
-                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"/>
-                </svg>
-                <span class="flex-1 ms-3 whitespace-nowrap">Sign In</span>
-             </a>
-          </li>
-          <li>
-             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                   <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z"/>
-                   <path d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z"/>
-                   <path d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z"/>
-                </svg>
-                <span class="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
-             </a>
-          </li>
-       </ul>
-    </div>
- </div> -->
-
-
-
+<!-- //data-drawer-target="drawer-right-example" data-drawer-show="drawer-right-example" data-drawer-placement="right" aria-controls="drawer-right-example" -->
 <template>
-    <div class="xl:pl-60 pt-14 min-h-screen w-screen transition-position lg:w-auto bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
-<section class="p-6 xl:max-w-6xl xl:mx-auto"><section class="mb-6 flex items-center justify-between"><div class="flex items-center justify-start"><span class="inline-flex justify-center items-center w-12 h-12 rounded-full bg-white text-black dark:bg-slate-900/70 dark:text-white mr-3"><svg viewBox="0 0 24 24" width="24" height="24" class="inline-block"><path fill="currentColor" d="M3,14L3.5,14.07L8.07,9.5C7.89,8.85 8.06,8.11 8.59,7.59C9.37,6.8 10.63,6.8 11.41,7.59C11.94,8.11 12.11,8.85 11.93,9.5L14.5,12.07L15,12C15.18,12 15.35,12 15.5,12.07L19.07,8.5C19,8.35 19,8.18 19,8A2,2 0 0,1 21,6A2,2 0 0,1 23,8A2,2 0 0,1 21,10C20.82,10 20.65,10 20.5,9.93L16.93,13.5C17,13.65 17,13.82 17,14A2,2 0 0,1 15,16A2,2 0 0,1 13,14L13.07,13.5L10.5,10.93C10.18,11 9.82,11 9.5,10.93L4.93,15.5L5,16A2,2 0 0,1 3,18A2,2 0 0,1 1,16A2,2 0 0,1 3,14Z"></path></svg></span><h1 class="text-3xl leading-tight">Overview</h1></div><a class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded-full border-gray-800 dark:border-white ring-gray-300 dark:ring-gray-400 bg-gray-800 text-white dark:bg-white dark:text-black hover:bg-gray-700 hover:dark:bg-slate-100 text-sm px-3 py-1" href="https://github.com/justboil/admin-one-vue-tailwind" target="_blank" disabled="false"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"></path></svg></span><span class="px-1">Star on GitHub</span></a></section><div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6"><div class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex"><div class="flex-1 p-6"><div class="justify-between items-center flex mb-3"><div class="flex items-center justify-center"><div class="inline-flex items-center capitalize leading-none text-xs border rounded-full py-1 px-3 bg-emerald-500 border-emerald-500 text-white"><span class="inline-flex justify-center items-center w-4 h-4 mr-1"><svg viewBox="0 0 24 24" width="14" height="14" class="inline-block"><path fill="currentColor" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"></path></svg></span><span>12%</span></div></div><div class="flex items-center justify-center"><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-gray-100 dark:border-slate-800 ring-gray-200 dark:ring-gray-500 bg-gray-100 text-black dark:bg-slate-800 dark:text-white hover:bg-gray-200 hover:dark:bg-slate-700 p-1" type="button" icon-w="w-4" icon-h="h-4"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"></path></svg></span><!--v-if--></button></div></div><div class="justify-between items-center flex"><div class="flex items-center justify-center"><div><h3 class="text-lg leading-tight text-gray-500 dark:text-slate-400">Clients</h3><h1 class="text-3xl leading-tight font-semibold"><div>512</div></h1></div></div><div class="flex items-center justify-center"><span class="inline-flex justify-center items-center  h-16 text-emerald-500"><svg viewBox="0 0 24 24" width="48" height="48" class="inline-block"><path fill="currentColor" d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"></path></svg></span></div></div></div><!--v-if--></div><div class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex"><div class="flex-1 p-6"><div class="justify-between items-center flex mb-3"><div class="flex items-center justify-center"><div class="inline-flex items-center capitalize leading-none text-xs border rounded-full py-1 px-3 bg-red-500 border-red-500 text-white"><span class="inline-flex justify-center items-center w-4 h-4 mr-1"><svg viewBox="0 0 24 24" width="14" height="14" class="inline-block"><path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"></path></svg></span><span>12%</span></div></div><div class="flex items-center justify-center"><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-gray-100 dark:border-slate-800 ring-gray-200 dark:ring-gray-500 bg-gray-100 text-black dark:bg-slate-800 dark:text-white hover:bg-gray-200 hover:dark:bg-slate-700 p-1" type="button" icon-w="w-4" icon-h="h-4"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"></path></svg></span><!--v-if--></button></div></div><div class="justify-between items-center flex"><div class="flex items-center justify-center"><div><h3 class="text-lg leading-tight text-gray-500 dark:text-slate-400">Sales</h3><h1 class="text-3xl leading-tight font-semibold"><div>$7,770</div></h1></div></div><div class="flex items-center justify-center"><span class="inline-flex justify-center items-center  h-16 text-blue-500"><svg viewBox="0 0 24 24" width="48" height="48" class="inline-block"><path fill="currentColor" d="M17,18A2,2 0 0,1 19,20A2,2 0 0,1 17,22C15.89,22 15,21.1 15,20C15,18.89 15.89,18 17,18M1,2H4.27L5.21,4H20A1,1 0 0,1 21,5C21,5.17 20.95,5.34 20.88,5.5L17.3,11.97C16.96,12.58 16.3,13 15.55,13H8.1L7.2,14.63L7.17,14.75A0.25,0.25 0 0,0 7.42,15H19V17H7C5.89,17 5,16.1 5,15C5,14.65 5.09,14.32 5.24,14.04L6.6,11.59L3,4H1V2M7,18A2,2 0 0,1 9,20A2,2 0 0,1 7,22C5.89,22 5,21.1 5,20C5,18.89 5.89,18 7,18M16,11L18.78,6H6.14L8.5,11H16Z"></path></svg></span></div></div></div><!--v-if--></div><div class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex"><div class="flex-1 p-6"><div class="justify-between items-center flex mb-3"><div class="flex items-center justify-center"><div class="inline-flex items-center capitalize leading-none text-xs border rounded-full py-1 px-3 bg-yellow-500 border-yellow-500 text-white"><span class="inline-flex justify-center items-center w-4 h-4 mr-1"><svg viewBox="0 0 24 24" width="14" height="14" class="inline-block"><path fill="currentColor" d="M11,15H13V17H11V15M11,7H13V13H11V7M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20Z"></path></svg></span><span>Overflow</span></div></div><div class="flex items-center justify-center"><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-gray-100 dark:border-slate-800 ring-gray-200 dark:ring-gray-500 bg-gray-100 text-black dark:bg-slate-800 dark:text-white hover:bg-gray-200 hover:dark:bg-slate-700 p-1" type="button" icon-w="w-4" icon-h="h-4"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"></path></svg></span><!--v-if--></button></div></div><div class="justify-between items-center flex"><div class="flex items-center justify-center"><div><h3 class="text-lg leading-tight text-gray-500 dark:text-slate-400">Performance</h3><h1 class="text-3xl leading-tight font-semibold"><div>256%</div></h1></div></div><div class="flex items-center justify-center"><span class="inline-flex justify-center items-center  h-16 text-red-500"><svg viewBox="0 0 24 24" width="48" height="48" class="inline-block"><path fill="currentColor" d="M3,14L3.5,14.07L8.07,9.5C7.89,8.85 8.06,8.11 8.59,7.59C9.37,6.8 10.63,6.8 11.41,7.59C11.94,8.11 12.11,8.85 11.93,9.5L14.5,12.07L15,12C15.18,12 15.35,12 15.5,12.07L19.07,8.5C19,8.35 19,8.18 19,8A2,2 0 0,1 21,6A2,2 0 0,1 23,8A2,2 0 0,1 21,10C20.82,10 20.65,10 20.5,9.93L16.93,13.5C17,13.65 17,13.82 17,14A2,2 0 0,1 15,16A2,2 0 0,1 13,14L13.07,13.5L10.5,10.93C10.18,11 9.82,11 9.5,10.93L4.93,15.5L5,16A2,2 0 0,1 3,18A2,2 0 0,1 1,16A2,2 0 0,1 3,14Z"></path></svg></span></div></div></div><!--v-if--></div></div><div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6"><div class="flex flex-col justify-between"><div class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex mb-6 last:mb-0"><div class="flex-1 p-6"><div class="justify-between items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><div class="justify-start items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><span class="inline-flex justify-center items-center w-12 h-12 rounded-full text-emerald-500 bg-gray-50 dark:bg-slate-800 md:mr-6"><svg viewBox="0 0 24 24" width="24" height="24" class="inline-block"><path fill="currentColor" d="M15 15V17H18V20H20V17H23V15H20V12H18V15M14.97 11.61C14.85 10.28 13.59 8.97 12 9C10.3 9.03 9 10.3 9 12C9 13.7 10.3 14.94 12 15C12.38 15 12.77 14.92 13.14 14.77C13.41 13.67 13.86 12.63 14.97 11.61M13 16H7C7 14.9 6.11 14 5 14V10C6.11 10 7 9.11 7 8H17C17 9.11 17.9 10 19 10V10.06C19.67 10.06 20.34 10.18 21 10.4V6H3V18H13.32C13.1 17.33 13 16.66 13 16Z"></path></svg></span></div><div class="flex items-center justify-center"><div class="text-center space-y-1 md:text-left md:mr-6"><h4 class="text-xl">$375.53</h4><p class="text-gray-500 dark:text-slate-400"><b>3 days ago</b> via Turcotte</p></div></div></div></div><div class="flex items-center justify-center"><div class="text-center md:text-right space-y-2"><p class="text-sm text-gray-500">Home Loan Account</p><div><div class="inline-flex items-center capitalize leading-none text-xs border rounded-full py-1 px-3 bg-emerald-500 border-emerald-500 text-white"><!--v-if--><span>deposit</span></div></div></div></div></div></div><!--v-if--></div><div class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex mb-6 last:mb-0"><div class="flex-1 p-6"><div class="justify-between items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><div class="justify-start items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><span class="inline-flex justify-center items-center w-12 h-12 rounded-full text-blue-500 bg-gray-50 dark:bg-slate-800 md:mr-6"><svg viewBox="0 0 24 24" width="24" height="24" class="inline-block"><path fill="currentColor" d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"></path></svg></span></div><div class="flex items-center justify-center"><div class="text-center space-y-1 md:text-left md:mr-6"><h4 class="text-xl">$470.26</h4><p class="text-gray-500 dark:text-slate-400"><b>3 days ago</b> via Murazik - Graham</p></div></div></div></div><div class="flex items-center justify-center"><div class="text-center md:text-right space-y-2"><p class="text-sm text-gray-500">Savings Account</p><div><div class="inline-flex items-center capitalize leading-none text-xs border rounded-full py-1 px-3 bg-blue-500 border-blue-500 text-white"><!--v-if--><span>payment</span></div></div></div></div></div></div><!--v-if--></div><div class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex mb-6 last:mb-0"><div class="flex-1 p-6"><div class="justify-between items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><div class="justify-start items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><span class="inline-flex justify-center items-center w-12 h-12 rounded-full text-yellow-500 bg-gray-50 dark:bg-slate-800 md:mr-6"><svg viewBox="0 0 24 24" width="24" height="24" class="inline-block"><path fill="currentColor" d="M3 22L4.5 20.5L6 22L7.5 20.5L9 22L10.5 20.5L12 22L13.5 20.5L15 22L16.5 20.5L18 22L19.5 20.5L21 22V2L19.5 3.5L18 2L16.5 3.5L15 2L13.5 3.5L12 2L10.5 3.5L9 2L7.5 3.5L6 2L4.5 3.5L3 2"></path></svg></span></div><div class="flex items-center justify-center"><div class="text-center space-y-1 md:text-left md:mr-6"><h4 class="text-xl">$971.34</h4><p class="text-gray-500 dark:text-slate-400"><b>5 days ago</b> via Fahey - Keebler</p></div></div></div></div><div class="flex items-center justify-center"><div class="text-center md:text-right space-y-2"><p class="text-sm text-gray-500">Checking Account</p><div><div class="inline-flex items-center capitalize leading-none text-xs border rounded-full py-1 px-3 bg-yellow-500 border-yellow-500 text-white"><!--v-if--><span>invoice</span></div></div></div></div></div></div><!--v-if--></div><div class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex mb-6 last:mb-0"><div class="flex-1 p-6"><div class="justify-between items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><div class="justify-start items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><span class="inline-flex justify-center items-center w-12 h-12 rounded-full text-red-500 bg-gray-50 dark:bg-slate-800 md:mr-6"><svg viewBox="0 0 24 24" width="24" height="24" class="inline-block"><path fill="currentColor" d="M15 15V17H23V15M14.97 11.61C14.85 10.28 13.59 8.97 12 9C10.3 9.03 9 10.3 9 12C9 13.7 10.3 14.94 12 15C12.38 15 12.77 14.92 13.14 14.77C13.41 13.67 13.86 12.63 14.97 11.61M13 16H7C7 14.9 6.11 14 5 14V10C6.11 10 7 9.11 7 8H17C17 9.11 17.9 10 19 10V10.06C19.67 10.06 20.34 10.18 21 10.4V6H3V18H13.32C13.1 17.33 13 16.66 13 16Z"></path></svg></span></div><div class="flex items-center justify-center"><div class="text-center space-y-1 md:text-left md:mr-6"><h4 class="text-xl">$374.63</h4><p class="text-gray-500 dark:text-slate-400"><b>7 days ago</b> via Collier - Hintz</p></div></div></div></div><div class="flex items-center justify-center"><div class="text-center md:text-right space-y-2"><p class="text-sm text-gray-500">Auto Loan Account</p><div><div class="inline-flex items-center capitalize leading-none text-xs border rounded-full py-1 px-3 bg-red-500 border-red-500 text-white"><!--v-if--><span>withdrawal</span></div></div></div></div></div></div><!--v-if--></div></div><div class="flex flex-col justify-between"><div class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex mb-6 last:mb-0"><div class="flex-1 p-6"><div class="justify-between items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><div class="justify-start items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><div class="w-12 h-12 mr-6"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Howell-Hand.svg" alt="Howell Hand" class="rounded-full block h-auto w-full max-w-full bg-gray-100 dark:bg-slate-800"></div></div><div class="flex items-center justify-center"><div class="text-center md:text-left overflow-hidden"><h4 class="text-xl text-ellipsis">Howell Hand</h4><p class="text-gray-500 dark:text-slate-400">Mar 3, 2023 @ percy64</p></div></div></div></div><div class="flex items-center justify-center"><div class="inline-flex items-center capitalize leading-none text-sm border rounded-full py-1.5 px-4 bg-emerald-500 border-emerald-500 text-white"><span class="inline-flex justify-center items-center w-4 h-4 mr-2"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z"></path></svg></span><span>70%</span></div></div></div></div><!--v-if--></div><div class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex mb-6 last:mb-0"><div class="flex-1 p-6"><div class="justify-between items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><div class="justify-start items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><div class="w-12 h-12 mr-6"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Hope-Howe.svg" alt="Hope Howe" class="rounded-full block h-auto w-full max-w-full bg-gray-100 dark:bg-slate-800"></div></div><div class="flex items-center justify-center"><div class="text-center md:text-left overflow-hidden"><h4 class="text-xl text-ellipsis">Hope Howe</h4><p class="text-gray-500 dark:text-slate-400">Dec 1, 2023 @ dare.concepcion</p></div></div></div></div><div class="flex items-center justify-center"><div class="inline-flex items-center capitalize leading-none text-sm border rounded-full py-1.5 px-4 bg-emerald-500 border-emerald-500 text-white"><span class="inline-flex justify-center items-center w-4 h-4 mr-2"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z"></path></svg></span><span>68%</span></div></div></div></div><!--v-if--></div><div class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex mb-6 last:mb-0"><div class="flex-1 p-6"><div class="justify-between items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><div class="justify-start items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><div class="w-12 h-12 mr-6"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Nelson-Jerde.svg" alt="Nelson Jerde" class="rounded-full block h-auto w-full max-w-full bg-gray-100 dark:bg-slate-800"></div></div><div class="flex items-center justify-center"><div class="text-center md:text-left overflow-hidden"><h4 class="text-xl text-ellipsis">Nelson Jerde</h4><p class="text-gray-500 dark:text-slate-400">May 18, 2023 @ geovanni.kessler</p></div></div></div></div><div class="flex items-center justify-center"><div class="inline-flex items-center capitalize leading-none text-sm border rounded-full py-1.5 px-4 bg-yellow-500 border-yellow-500 text-white"><span class="inline-flex justify-center items-center w-4 h-4 mr-2"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M22,12L18,8V11H3V13H18V16L22,12Z"></path></svg></span><span>49%</span></div></div></div></div><!--v-if--></div><div class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex mb-6 last:mb-0"><div class="flex-1 p-6"><div class="justify-between items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><div class="justify-start items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><div class="w-12 h-12 mr-6"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Kim-Weimann.svg" alt="Kim Weimann" class="rounded-full block h-auto w-full max-w-full bg-gray-100 dark:bg-slate-800"></div></div><div class="flex items-center justify-center"><div class="text-center md:text-left overflow-hidden"><h4 class="text-xl text-ellipsis">Kim Weimann</h4><p class="text-gray-500 dark:text-slate-400">May 4, 2023 @ macejkovic.dashawn</p></div></div></div></div><div class="flex items-center justify-center"><div class="inline-flex items-center capitalize leading-none text-sm border rounded-full py-1.5 px-4 bg-red-500 border-red-500 text-white"><span class="inline-flex justify-center items-center w-4 h-4 mr-2"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M16,18L18.29,15.71L13.41,10.83L9.41,14.83L2,7.41L3.41,6L9.41,12L13.41,8L19.71,14.29L22,12V18H16Z"></path></svg></span><span>38%</span></div></div></div></div><!--v-if--></div></div></div><div class="rounded-2xl py-12 px-6 lg:px-12 text-center bg-gradient-to-tr from-pink-400 via-red-500 to-yellow-500 mt-6 mb-6"><h1 class="text-3xl text-white mb-6">Like the project? Please star on <b>GitHub</b> ;-)</h1><div><a class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded-full border-white ring-gray-200 dark:ring-gray-500 bg-white text-black hover:bg-gray-100 py-2 px-6" href="https://github.com/justboil/admin-one-vue-tailwind" target="_blank" disabled="false"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"></path></svg></span><span class="px-2">GitHub</span></a></div></div><section class="pt-6 mb-6 flex items-center justify-between"><div class="flex items-center justify-start"><span class="inline-flex justify-center items-center w-6 h-6 mr-2"><svg viewBox="0 0 24 24" width="20" height="20" class="inline-block"><path fill="currentColor" d="M11,2V22C5.9,21.5 2,17.2 2,12C2,6.8 5.9,2.5 11,2M13,2V11H22C21.5,6.2 17.8,2.5 13,2M13,13V22C17.7,21.5 21.5,17.8 22,13H13Z"></path></svg></span><h1 class="text-2xl leading-tight">Trends overview</h1></div><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-white dark:border-slate-900 ring-gray-200 dark:ring-gray-500 bg-white text-black dark:bg-slate-900 dark:text-white hover:bg-gray-100 hover:dark:bg-slate-800 p-1" type="button"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M2 12C2 16.97 6.03 21 11 21C13.39 21 15.68 20.06 17.4 18.4L15.9 16.9C14.63 18.25 12.86 19 11 19C4.76 19 1.64 11.46 6.05 7.05C10.46 2.64 18 5.77 18 12H15L19 16H19.1L23 12H20C20 7.03 15.97 3 11 3C6.03 3 2 7.03 2 12Z"></path></svg></span><!--v-if--></button></section><div class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex mb-6"><div class="flex-1 p-6"><div><canvas class="h-96" width="1128" height="422" style="display: block; box-sizing: border-box; height: 384px; width: 1025px;"></canvas></div></div><!--v-if--></div><section class="pt-6 mb-6 flex items-center justify-between"><div class="flex items-center justify-start"><span class="inline-flex justify-center items-center w-6 h-6 mr-2"><svg viewBox="0 0 24 24" width="20" height="20" class="inline-block"><path fill="currentColor" d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z"></path></svg></span><h1 class="text-2xl leading-tight">Clients</h1></div><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-white dark:border-slate-900 ring-gray-200 dark:ring-gray-500 bg-white text-black dark:bg-slate-900 dark:text-white hover:bg-gray-100 hover:dark:bg-slate-800 p-1" type="button"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"></path></svg></span><!--v-if--></button></section><div class="bg-blue-500 border-blue-500 text-white px-3 py-6 md:py-3 mb-6 last:mb-0 border rounded-lg transition-colors duration-150"><div class="justify-between items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><div class="flex flex-col md:flex-row items-center"><span class="inline-flex justify-center items-center w-10 md:w-5 h-10 md:h-5 md:mr-2"><svg viewBox="0 0 24 24" width="24" height="24" class="inline-block"><path fill="currentColor" d="M23,11H18A1,1 0 0,0 17,12V21A1,1 0 0,0 18,22H23A1,1 0 0,0 24,21V12A1,1 0 0,0 23,11M23,20H18V13H23V20M20,2H2C0.89,2 0,2.89 0,4V16A2,2 0 0,0 2,18H9V20H7V22H15V20H13V18H15V16H2V4H20V9H22V4C22,2.89 21.1,2 20,2Z"></path></svg></span><span class="text-center md:text-left md:py-2"><b>Responsive table.</b> Collapses on mobile </span></div></div><div class="flex items-center justify-center"><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded-full border-white ring-gray-200 dark:ring-gray-500 bg-white text-black hover:bg-gray-100 p-1" type="button"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"></path></svg></span><!--v-if--></button></div></div></div><div class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex"><div class="flex-1"><div class="flex z-50 items-center flex-col justify-center overflow-hidden fixed inset-0" style="display: none;"><div class="overlay absolute inset-0 bg-gradient-to-tr opacity-90 dark:from-gray-700 dark:via-gray-900 dark:to-gray-700"></div><div class="rounded-2xl flex-col dark:bg-slate-900 bg-white flex shadow-lg max-h-modal w-11/12 md:w-3/5 lg:w-2/5 xl:w-4/12 z-50" style="display: none;"><div class="flex-1 p-6"><div class="flex items-center justify-between mb-3"><h1 class="text-2xl">Sample modal</h1></div><div class="space-y-3"><p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p><p>This is sample modal</p></div></div><footer class="p-6"><div class="flex items-center justify-start flex-wrap -mb-3"><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 py-2 px-3 mr-3 last:mr-0 mb-3" type="button"><!--v-if--><span class="px-2">Done</span></button><!--v-if--></div></footer></div></div><div class="flex z-50 items-center flex-col justify-center overflow-hidden fixed inset-0" style="display: none;"><div class="overlay absolute inset-0 bg-gradient-to-tr opacity-90 dark:from-gray-700 dark:via-gray-900 dark:to-gray-700"></div><div class="rounded-2xl flex-col dark:bg-slate-900 bg-white flex shadow-lg max-h-modal w-11/12 md:w-3/5 lg:w-2/5 xl:w-4/12 z-50" style="display: none;"><div class="flex-1 p-6"><div class="flex items-center justify-between mb-3"><h1 class="text-2xl">Please confirm</h1><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded-full border-white dark:border-slate-900 ring-gray-200 dark:ring-gray-500 bg-white text-black dark:bg-slate-900 dark:text-white hover:bg-gray-100 hover:dark:bg-slate-800 p-1" type="button"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"></path></svg></span><!--v-if--></button></div><div class="space-y-3"><p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p><p>This is sample modal</p></div></div><footer class="p-6"><div class="flex items-center justify-start flex-wrap -mb-3"><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-red-600 dark:border-red-500 ring-red-300 dark:ring-red-700 bg-red-600 dark:bg-red-500 text-white hover:bg-red-700 hover:border-red-700 hover:dark:bg-red-600 hover:dark:border-red-600 py-2 px-3 mr-3 last:mr-0 mb-3" type="button"><!--v-if--><span class="px-2">Done</span></button><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-red-600 dark:border-red-500 ring-red-300 dark:ring-red-700 text-red-600 dark:text-red-500 hover:bg-red-600 hover:text-white hover:text-white hover:dark:text-white hover:dark:border-red-600 py-2 px-3 mr-3 last:mr-0 mb-3" type="button"><!--v-if--><span class="px-2">Cancel</span></button></div></footer></div></div><table><thead><tr><!--v-if--><th></th><th>Name</th><th>Company</th><th>City</th><th>Progress</th><th>Created</th><th></th></tr></thead><tbody><tr><!--v-if--><td class="border-b-0 lg:w-6 before:hidden"><div class="w-24 h-24 mx-auto lg:w-6 lg:h-6"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Howell-Hand.svg" alt="Howell Hand" class="rounded-full block h-auto w-full max-w-full bg-gray-100 dark:bg-slate-800"></div></td><td data-label="Name">Howell Hand</td><td data-label="Company">Kiehn-Green</td><td data-label="City">Emelyside</td><td data-label="Progress" class="lg:w-32"><progress class="flex w-2/5 self-center lg:w-full" max="100" value="70">70</progress></td><td data-label="Created" class="lg:w-1 whitespace-nowrap"><small class="text-gray-500 dark:text-slate-400" title="Mar 3, 2023">Mar 3, 2023</small></td><td class="before:hidden lg:w-1 whitespace-nowrap"><div class="flex items-center justify-start lg:justify-end flex-nowrap -mb-3"><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 p-1 mr-3 last:mr-0 mb-3" type="button"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"></path></svg></span><!--v-if--></button><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-red-600 dark:border-red-500 ring-red-300 dark:ring-red-700 bg-red-600 dark:bg-red-500 text-white hover:bg-red-700 hover:border-red-700 hover:dark:bg-red-600 hover:dark:border-red-600 p-1 mr-3 last:mr-0 mb-3" type="button"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"></path></svg></span><!--v-if--></button></div></td></tr><tr><!--v-if--><td class="border-b-0 lg:w-6 before:hidden"><div class="w-24 h-24 mx-auto lg:w-6 lg:h-6"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Hope-Howe.svg" alt="Hope Howe" class="rounded-full block h-auto w-full max-w-full bg-gray-100 dark:bg-slate-800"></div></td><td data-label="Name">Hope Howe</td><td data-label="Company">Nolan Inc</td><td data-label="City">Paristown</td><td data-label="Progress" class="lg:w-32"><progress class="flex w-2/5 self-center lg:w-full" max="100" value="68">68</progress></td><td data-label="Created" class="lg:w-1 whitespace-nowrap"><small class="text-gray-500 dark:text-slate-400" title="Dec 1, 2023">Dec 1, 2023</small></td><td class="before:hidden lg:w-1 whitespace-nowrap"><div class="flex items-center justify-start lg:justify-end flex-nowrap -mb-3"><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 p-1 mr-3 last:mr-0 mb-3" type="button"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"></path></svg></span><!--v-if--></button><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-red-600 dark:border-red-500 ring-red-300 dark:ring-red-700 bg-red-600 dark:bg-red-500 text-white hover:bg-red-700 hover:border-red-700 hover:dark:bg-red-600 hover:dark:border-red-600 p-1 mr-3 last:mr-0 mb-3" type="button"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"></path></svg></span><!--v-if--></button></div></td></tr><tr><!--v-if--><td class="border-b-0 lg:w-6 before:hidden"><div class="w-24 h-24 mx-auto lg:w-6 lg:h-6"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Nelson-Jerde.svg" alt="Nelson Jerde" class="rounded-full block h-auto w-full max-w-full bg-gray-100 dark:bg-slate-800"></div></td><td data-label="Name">Nelson Jerde</td><td data-label="Company">Nitzsche LLC</td><td data-label="City">Jailynbury</td><td data-label="Progress" class="lg:w-32"><progress class="flex w-2/5 self-center lg:w-full" max="100" value="49">49</progress></td><td data-label="Created" class="lg:w-1 whitespace-nowrap"><small class="text-gray-500 dark:text-slate-400" title="May 18, 2023">May 18, 2023</small></td><td class="before:hidden lg:w-1 whitespace-nowrap"><div class="flex items-center justify-start lg:justify-end flex-nowrap -mb-3"><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 p-1 mr-3 last:mr-0 mb-3" type="button"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"></path></svg></span><!--v-if--></button><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-red-600 dark:border-red-500 ring-red-300 dark:ring-red-700 bg-red-600 dark:bg-red-500 text-white hover:bg-red-700 hover:border-red-700 hover:dark:bg-red-600 hover:dark:border-red-600 p-1 mr-3 last:mr-0 mb-3" type="button"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"></path></svg></span><!--v-if--></button></div></td></tr><tr><!--v-if--><td class="border-b-0 lg:w-6 before:hidden"><div class="w-24 h-24 mx-auto lg:w-6 lg:h-6"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Kim-Weimann.svg" alt="Kim Weimann" class="rounded-full block h-auto w-full max-w-full bg-gray-100 dark:bg-slate-800"></div></td><td data-label="Name">Kim Weimann</td><td data-label="Company">Brown-Lueilwitz</td><td data-label="City">New Emie</td><td data-label="Progress" class="lg:w-32"><progress class="flex w-2/5 self-center lg:w-full" max="100" value="38">38</progress></td><td data-label="Created" class="lg:w-1 whitespace-nowrap"><small class="text-gray-500 dark:text-slate-400" title="May 4, 2023">May 4, 2023</small></td><td class="before:hidden lg:w-1 whitespace-nowrap"><div class="flex items-center justify-start lg:justify-end flex-nowrap -mb-3"><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 p-1 mr-3 last:mr-0 mb-3" type="button"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"></path></svg></span><!--v-if--></button><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-red-600 dark:border-red-500 ring-red-300 dark:ring-red-700 bg-red-600 dark:bg-red-500 text-white hover:bg-red-700 hover:border-red-700 hover:dark:bg-red-600 hover:dark:border-red-600 p-1 mr-3 last:mr-0 mb-3" type="button"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"></path></svg></span><!--v-if--></button></div></td></tr><tr><!--v-if--><td class="border-b-0 lg:w-6 before:hidden"><div class="w-24 h-24 mx-auto lg:w-6 lg:h-6"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Justice-O-Reilly.svg" alt="Justice O'Reilly" class="rounded-full block h-auto w-full max-w-full bg-gray-100 dark:bg-slate-800"></div></td><td data-label="Name">Justice O'Reilly</td><td data-label="Company">Lakin-Muller</td><td data-label="City">New Kacie</td><td data-label="Progress" class="lg:w-32"><progress class="flex w-2/5 self-center lg:w-full" max="100" value="38">38</progress></td><td data-label="Created" class="lg:w-1 whitespace-nowrap"><small class="text-gray-500 dark:text-slate-400" title="Mar 27, 2023">Mar 27, 2023</small></td><td class="before:hidden lg:w-1 whitespace-nowrap"><div class="flex items-center justify-start lg:justify-end flex-nowrap -mb-3"><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 p-1 mr-3 last:mr-0 mb-3" type="button"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"></path></svg></span><!--v-if--></button><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-red-600 dark:border-red-500 ring-red-300 dark:ring-red-700 bg-red-600 dark:bg-red-500 text-white hover:bg-red-700 hover:border-red-700 hover:dark:bg-red-600 hover:dark:border-red-600 p-1 mr-3 last:mr-0 mb-3" type="button"><span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="16" height="16" class="inline-block"><path fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"></path></svg></span><!--v-if--></button></div></td></tr></tbody></table><div class="p-3 lg:px-6 border-t border-gray-100 dark:border-slate-800"><div class="justify-between items-center block md:flex"><div class="flex items-center justify-center mb-6 md:mb-0"><div class="flex items-center justify-start flex-wrap -mb-3"><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-gray-100 dark:border-slate-800 ring-gray-200 dark:ring-gray-500 bg-gray-200 dark:bg-slate-700 hover:bg-gray-200 hover:dark:bg-slate-700 text-sm p-1 mr-3 last:mr-0 mb-3" type="button"><!--v-if--><span class="px-2">1</span></button><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-white dark:border-slate-900 ring-gray-200 dark:ring-gray-500 bg-white text-black dark:bg-slate-900 dark:text-white hover:bg-gray-100 hover:dark:bg-slate-800 text-sm p-1 mr-3 last:mr-0 mb-3" type="button"><!--v-if--><span class="px-2">2</span></button><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-white dark:border-slate-900 ring-gray-200 dark:ring-gray-500 bg-white text-black dark:bg-slate-900 dark:text-white hover:bg-gray-100 hover:dark:bg-slate-800 text-sm p-1 mr-3 last:mr-0 mb-3" type="button"><!--v-if--><span class="px-2">3</span></button><button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-white dark:border-slate-900 ring-gray-200 dark:ring-gray-500 bg-white text-black dark:bg-slate-900 dark:text-white hover:bg-gray-100 hover:dark:bg-slate-800 text-sm p-1 mr-3 last:mr-0 mb-3" type="button"><!--v-if--><span class="px-2">4</span></button></div></div><div class="flex items-center justify-center"><small>Page 1 of 4</small></div></div></div></div><!--v-if--></div></section>
+
+   <div style="background-color: whitesmoke;"
+      class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
+      <!-- Navigation Button -->
+
+
+
+      <!-- <div id="drawer-right-example"
+         class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-80 dark:bg-gray-800"
+         tabindex="-1" aria-labelledby="drawer-right-label">
+         <h5 id="drawer-right-label"
+            class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"><svg
+               class="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+               viewBox="0 0 20 20">
+               <path
+                  d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>Right drawer</h5>
+         <button type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example"
+            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+            <span class="sr-only">Close menu</span>
+         </button>
+         <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Supercharge your hiring by taking advantage of our <a
+               href="#" class="text-blue-600 underline font-medium dark:text-blue-500 hover:no-underline">limited-time
+               sale</a> for Flowbite Docs + Job Board. Unlimited access to over 190K top-ranked candidates and the #1
+            design job board.</p>
+         <div class="grid grid-cols-2 gap-4">
+            <a href="#"
+               class="px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Learn
+               more</a>
+            <a href="#"
+               class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Get
+               access <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                  fill="none" viewBox="0 0 14 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                     d="M1 5h12m0 0L9 1m4 4L9 9" />
+               </svg></a>
+         </div>
+      </div> -->
+
+
+      <div id="popup-modal" tabindex="-1"
+         class="hidden fixed top-0 left-0 right-0 bottom-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+
+         <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+
+
+               <div class="p-4 md:p-5 text-center">
+                  <img src="../assets/990D914B5A67119C13.gif" alt="출석 체크" class="mx-auto mb-4 w-40 h-20" />
+                  <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                     출석 체크하기</h3>
+                  <button data-modal-hide="popup-modal" type="button"
+                     class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                     확인
+                  </button>
+                  <button data-modal-hide="popup-modal" type="button"
+                     class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                     취소</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="popup-modal1" tabindex="-1"
+         class="hidden fixed top-0 left-0 right-0 bottom-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+
+         <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+
+
+               <div class="p-4 md:p-5 text-center">
+                  <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true"
+                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+                  <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">퇴실 체크</h3>
+                  <button data-modal-hide="popup-modal" type="button"
+                     class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                     퇴실 하기
+                  </button>
+                  <button data-modal-hide="popup-modal" type="button"
+                     class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">취소
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="popup-modal2" tabindex="-1"
+         class="hidden fixed top-0 left-0 right-0 bottom-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+
+         <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+
+
+               <form class="p-4 md:p-5">
+                  <div class="grid gap-4 mb-4 grid-cols-2">
+                     <div class="col-span-2">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">휴가
+                           신청</label>
+                        <input type="text" name="name" id="name"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                           placeholder="Type product name" required="">
+                     </div>
+                     <div id="date-range-picker" date-rangepicker class="flex items-center col-span-2">
+            <div class="relative">
+              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Z" />
+                </svg>
+              </div>
+              <input id="datepicker-range-start" name="start" type="text"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Select date start">
+            </div>
+            <span class="mx-4 text-gray-500">to</span>
+            <div class="relative">
+              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Z" />
+                </svg>
+              </div>
+              <input id="datepicker-range-end" name="end" type="text"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Select date end">
+            </div>
+          </div>
+                     <div>
+
+                     </div>
+                     <div class="col-span-2 ">
+                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> 목록
+                        </label>
+                        <select id="category"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                           <option selected="">선택</option>
+                           <option value="huga"> 휴가 </option>
+                           <option value="sick"> 병가 </option>
+                           <option value="gita"> 기타 </option>
+                        </select>
+                     </div>
+                     <div class="col-span-2">
+                        <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                           사유 </label>
+                        <textarea id="description" rows="4"
+                           class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           placeholder="Write product description here"></textarea>
+                     </div>
+                  </div>
+                  <button type="submit"
+                     class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                     <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                           d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                           clip-rule="evenodd"></path>
+                     </svg>
+                     신청 하기
+                  </button>
+               </form>
+            </div>
+         </div>
+      </div>
 
 
 
 
-    </div>
+      <div id="popup-modal3" tabindex="-1"
+         class="hidden fixed top-0 left-0 right-0 bottom-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
 
+         <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+
+
+               <form class="p-4 md:p-5">
+                  <div class="grid gap-4 mb-4 grid-cols-2">
+                     <div class="col-span-2">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">조퇴 할거얌</label>
+                        <input type="text" name="name" id="name"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                           placeholder="Type product name" required="">
+                     </div>
+                      
+                      
+                     
+                     <div class="col-span-2">
+                        <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                           사유 </label>
+                        <textarea id="description" rows="4"
+                           class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           placeholder="Write product description here"></textarea>
+                     </div>
+                  </div>
+                  <button type="submit"
+                     class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                     <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                           d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                           clip-rule="evenodd"></path>
+                     </svg>
+                     신청 하기
+                  </button>
+               </form>
+            </div>
+         </div>
+      </div>
+
+      <!-- Drawer -->
+      <div v-if="isDrawerOpen"
+         class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto bg-white dark:bg-gray-800 transition-transform" >
+         <h5 class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">
+            Menu
+         </h5>
+         <button @click="toggleDrawer"
+            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+               xmlns="http://www.w3.org/2000/svg">
+               <path fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+            </svg>
+            <span class="sr-only">Close menu</span>
+         </button>
+         <ul class="py-4 space-y-2 font-medium">
+            <li>
+               <a href="#"
+                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <svg
+                     class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                     <path
+                        d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
+                     <path
+                        d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
+                  </svg>
+                  <span class="ml-3">Dashboard</span>
+               </a>
+            </li>
+            <!-- Add more navigation items here -->
+         </ul>
+      </div>
+
+      <div class="py-10">
+         <h2 class="text-2xl font-bold mb-6">강의 커리큘럼</h2>
+         <div class="flex flex-wrap gap-4 justify-center">
+            <!-- Card 1 -->
+            <div
+               class="rounded-lg shadow-md bg-white border-l-4 border-blue-500 p-4 flex flex-col justify-between min-w-[250px] max-w-[300px]">
+               <h3 class="font-semibold text-lg text-slate-800"> 기반 기술</h3>
+               <div class="mt-4 relative h-2 bg-gray-200 rounded">
+                  <div class="absolute top-0 left-0 h-full bg-blue-500 rounded" style="width: 25%;"></div>
+               </div>
+               <div class="flex justify-between items-center mt-2">
+                  <span class="text-blue-500 font-medium">Advanced</span>
+                  <a href="#" class="text-blue-500 hover:text-blue-600" @click="toggleDrawer">→</a>
+               </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div
+               class="rounded-lg shadow-md bg-white border-l-4 border-pink-500 p-4 flex flex-col justify-between min-w-[250px] max-w-[300px]">
+               <h3 class="font-semibold text-lg text-slate-800"> 데이터 베이스 </h3>
+               <div class="mt-4 relative h-2 bg-gray-200 rounded">
+                  <div class="absolute top-0 left-0 h-full bg-pink-500 rounded" style="width: 25%;"></div>
+               </div>
+               <div class="flex justify-between items-center mt-2">
+                  <span class="text-pink-500 font-medium">Beginner</span>
+                  <a href="#" class="text-pink-500 hover:text-pink-600" @click="toggleDrawer">→</a>
+               </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div
+               class="rounded-lg shadow-md bg-white border-l-4 border-orange-500 p-4 flex flex-col justify-between min-w-[250px] max-w-[300px]">
+               <h3 class="font-semibold text-lg text-slate-800"> 백엔드 </h3>
+               <div class="mt-4 relative h-2 bg-gray-200 rounded">
+                  <div class="absolute top-0 left-0 h-full bg-orange-500 rounded" style="width: 50%;"></div>
+               </div>
+               <div class="flex justify-between items-center mt-2">
+                  <span class="text-orange-500 font-medium">Intermediate</span>
+                  <a href="#" class="text-orange-500 hover:text-orange-600" @click="toggleDrawer">→</a>
+               </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div
+               class="rounded-lg shadow-md bg-white border-l-4 border-blue-500 p-4 flex flex-col justify-between min-w-[250px] max-w-[300px]">
+               <h3 class="font-semibold text-lg text-slate-800"> 데브옵스 </h3>
+               <div class="mt-4 relative h-2 bg-gray-200 rounded">
+                  <div class="absolute top-0 left-0 h-full bg-blue-500 rounded" style="width: 25%;"></div>
+               </div>
+               <div class="flex justify-between items-center mt-2">
+                  <span class="text-blue-500 font-medium">Advanced</span>
+                  <a href="#" class="text-blue-500 hover:text-blue-600" @click="toggleDrawer">→</a>
+               </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div
+               class="rounded-lg shadow-md bg-white border-l-4 border-pink-500 p-4 flex flex-col justify-between min-w-[250px] max-w-[300px]">
+               <h3 class="font-semibold text-lg text-slate-800"> 최종 프로젝트</h3>
+               <div class="mt-4 relative h-2 bg-gray-200 rounded">
+                  <div class="absolute top-0 left-0 h-full bg-pink-500 rounded" style="width: 25%;"></div>
+               </div>
+               <div class="flex justify-between items-center mt-2">
+                  <span class="text-pink-500 font-medium">Beginner</span>
+                  <a href="#" class="text-pink-500 hover:text-pink-600" @click="toggleDrawer">→</a>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 p-4 bg-gray-50">
+         <!-- Card 1 -->
+         <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
+            <div>
+               <p class="text-sm font-medium text-gray-500">출석</p>
+               <p class="text-2xl font-bold text-gray-800">0</p>
+            </div>
+            <div class="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full">
+               <svg xmlns="http://www.w3.org/2000/svg" class="size-10 text-primary dark:text-accent" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+               </svg>
+            </div>
+         </div>
+
+         <!-- Card 2 -->
+         <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
+            <div>
+               <p class="text-sm font-medium text-gray-500">남은 휴가</p>
+               <p class="text-2xl font-bold text-gray-800">0</p>
+            </div>
+            <div class="flex items-center justify-center w-10 h-10 bg-purple-100 rounded-full">
+               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-500" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h11M9 21l-6-6 6-6m6 6h6" />
+               </svg>
+            </div>
+         </div>
+
+         <!-- Card 3 -->
+         <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
+            <div>
+               <p class="text-sm font-medium text-gray-500">지각</p>
+               <p class="text-2xl font-bold text-gray-800">0</p>
+            </div>
+            <div class="flex items-center justify-center w-10 h-10 bg-pink-100 rounded-full">
+               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-pink-500" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h11M9 21l-6-6 6-6m6 6h6" />
+               </svg>
+            </div>
+         </div>
+
+         <!-- Card 4 -->
+         <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
+            <div>
+               <p class="text-sm font-medium text-gray-500">조퇴</p>
+               <p class="text-2xl font-bold text-gray-800">0</p>
+            </div>
+            <div class="flex items-center justify-center w-10 h-10 bg-orange-100 rounded-full">
+               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-orange-500" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h11M9 21l-6-6 6-6m6 6h6" />
+               </svg>
+            </div>
+         </div>
+
+         <!-- Card 5 -->
+         <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
+            <div>
+               <p class="text-sm font-medium text-gray-500">외출</p>
+               <p class="text-2xl font-bold text-gray-800">0</p>
+            </div>
+            <div class="flex items-center justify-center w-10 h-10 bg-green-100 rounded-full">
+               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-500" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h11M9 21l-6-6 6-6m6 6h6" />
+               </svg>
+            </div>
+         </div>
+         <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
+            <div>
+               <p class="text-sm font-medium text-gray-500">조퇴</p>
+               <p class="text-2xl font-bold text-gray-800">0</p>
+            </div>
+            <div class="flex items-center justify-center w-10 h-10 bg-green-100 rounded-full">
+               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-500" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h11M9 21l-6-6 6-6m6 6h6" />
+               </svg>
+            </div>
+         </div>
+
+      </div>
+      <div class="p-8 bg-gray-100 dark:bg-gray-900">
+         <h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">게시판</h1>
+         <div class="overflow-x-auto shadow-lg rounded-lg">
+            <table class="min-w-full text-sm text-left text-gray-500 dark:text-gray-400">
+               <thead class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 uppercase text-xs">
+                  <tr>
+                     <th scope="col" class="px-6 py-4">제목</th>
+                     <th scope="col" class="px-6 py-4">글쓴이</th>
+                     <th scope="col" class="px-6 py-4">카테고리</th>
+                     <th scope="col" class="px-6 py-4">작성 일자</th>
+                     <th scope="col" class="px-6 py-4 text-right">
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">더보기</a>
+                     </th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <!-- Row 1 -->
+                  <tr class="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700">
+                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">애플 맥북 프로 17"</td>
+                     <td class="px-6 py-4">홍길동</td>
+                     <td class="px-6 py-4">랩탑</td>
+                     <td class="px-6 py-4">2024-01-01</td>
+                     <td class="px-6 py-4 text-right">
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">글보기</a>
+                     </td>
+                  </tr>
+                  <!-- Row 2 -->
+                  <tr class="bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700">
+                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">마이크로소프트 서피스 프로</td>
+                     <td class="px-6 py-4">김철수</td>
+                     <td class="px-6 py-4">랩탑 PC</td>
+                     <td class="px-6 py-4">2024-01-02</td>
+                     <td class="px-6 py-4 text-right">
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">글보기</a>
+                     </td>
+                  </tr>
+                  <!-- Row 3 -->
+                  <tr class="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700">
+                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">매직 마우스 2</td>
+                     <td class="px-6 py-4">이영희</td>
+                     <td class="px-6 py-4">액세서리</td>
+                     <td class="px-6 py-4">2024-01-03</td>
+                     <td class="px-6 py-4 text-right">
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">글보기</a>
+                     </td>
+                  </tr>
+                  <!-- Additional Rows -->
+                  <tr class="bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700">
+                     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">매직 키보드</td>
+                     <td class="px-6 py-4">박지민</td>
+                     <td class="px-6 py-4">액세서리</td>
+                     <td class="px-6 py-4">2024-01-04</td>
+                     <td class="px-6 py-4 text-right">
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">글보기</a>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div>
+         <ol class="relative border-s border-gray-200 dark:border-gray-700 p-6 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-lg"
+            style="
+    margin-left: 40px;
+">
+            <h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">과제 현황</h1>
+
+            <li class="mb-10 ms-6">
+               <span
+                  class="absolute flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-blue-900 dark:text-blue-300">
+                  <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                     <path
+                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                  </svg>
+               </span>
+               <h3 class="mb-1 text-lg font-semibold text-gray-800 dark:text-white">
+                  Flowbite Application UI v2.0.0
+                  <span
+                     class="bg-blue-100 text-blue-600 text-xs font-medium ms-2 px-2 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Latest</span>
+               </h3>
+               <time class="block mb-2 text-sm font-normal text-gray-500 dark:text-gray-400">
+                  Released on January 13th, 2022
+               </time>
+               <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+                  Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and
+                  pre-order E-commerce & Marketing pages.
+               </p>
+               <a href="#"
+                  class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <svg class="w-4 h-4 me-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                     <path
+                        d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z" />
+                     <path
+                        d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
+                  </svg>
+                  Download ZIP
+               </a>
+            </li>
+
+            <li class="mb-10 ms-6">
+               <span
+                  class="absolute flex items-center justify-center w-8 h-8 bg-green-100 text-green-600 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900 dark:text-green-300">
+                  <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                     <path
+                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                  </svg>
+               </span>
+               <h3 class="mb-1 text-lg font-semibold text-gray-800 dark:text-white">Flowbite Figma v1.3.0</h3>
+               <time class="block mb-2 text-sm font-normal text-gray-500 dark:text-gray-400">Released on December 7th,
+                  2021</time>
+               <p class="text-sm text-gray-600 dark:text-gray-400">
+                  All of the pages and components are first designed in Figma and we keep a parity between the two
+                  versions even as we update the project.
+               </p>
+            </li>
+         </ol>
+
+      </div>
+
+
+
+   </div>
 </template>

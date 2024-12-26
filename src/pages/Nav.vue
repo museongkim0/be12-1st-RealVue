@@ -11,7 +11,7 @@
  
 
             <div class="flex flex-1 items-stretch h-14">
-                <div
+                <div   id="menu-toggle"
                     class="flex lg:hidden py-2 px-3 navbar-item-label items-center cursor-pointer dark:text-white dark:hover:text-slate-400">
                     <span class="inline-flex justify-center items-center w-6 h-6"><svg viewBox="0 0 24 24" width="24"
                             height="24" class="inline-block">

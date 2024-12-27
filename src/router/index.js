@@ -16,6 +16,8 @@ import InstructorList from '../pages/manager/InstructorList.vue';
 import ManagerList from '../pages/manager/ManagerList.vue';
 import AttendanceManage from '../pages/manager/AttendanceManage.vue';
 import InstructorDash from '../pages/instructor/InstructorDash.vue';
+import ExamList from '../pages/manager/ExamList.vue';
+import ExamDetails from '../pages/manager/ExamDetails.vue';
 const router = createRouter({
     history: createWebHistory(),
     routes : [
@@ -29,6 +31,8 @@ const router = createRouter({
         { path: '/manager/instructorList', component: InstructorList },
         { path: '/manager/managerList', component: ManagerList },
         { path: '/manager/attendanceManage', component: AttendanceManage},
+        { path: '/manager/examList', component: ExamList},
+        { path: '/manager/examDetails', component: ExamDetails}
         // { path: '/c', component: Create },
         // { path: '/d', component: Signup },
         // { path: '/e', component: Login },

@@ -1,47 +1,88 @@
 <template>
-    <div class="attendance-page">
+    <div class="attendance-management">
       <h1 class="page-title">출석 관리</h1>
   
-      <!-- 필터 섹션 -->
-      <div class="filter-section">
-        <label for="view-mode">보기 방식:</label>
-        <select v-model="viewMode" id="view-mode" class="view-mode-select">
-          <option value="all">전체</option>
-          <option value="monthly">월별</option>
-          <option value="daily">일별</option>
-        </select>
+      <!-- 카테고리 탭 -->
+      <div class="tabs">
+        <button
+          v-for="tab in tabs"
+          :key="tab"
+          :class="{ active: selectedTab === tab }"
+          @click="selectTab(tab)"
+        >
+          {{ tab }}
+        </button>
       </div>
   
-      <!-- 캘린더 섹션 (월별/일별에서만 표시) -->
-      <div v-if="viewMode !== 'all'" class="calendar-section">
-        <h2 class="calendar-title">날짜 선택</h2>
-        <vue-cal
-          class="calendar"
-          :disable-views="['year', 'week', 'day']"
-          v-model="selectedDate"
-          :events="calendarEvents"
-          @cell-click="onDateClick"
-        />
-      </div>
-  
-      <!-- 출석 테이블 -->
-      <div class="table-section">
-        <h2 class="table-title">출석 목록</h2>
+      <!-- 전체 출석률 -->
+      <div v-if="selectedTab === '전체'">
+        <h2>전체 출석률</h2>
+        <p>기간: {{ formatDate(startDate) }} ~ {{ formatDate(endDate) }}</p>
         <table class="custom-table">
           <thead>
             <tr>
-              <th>학생 이름</th>
-              <th>연락처</th>
-              <th>출석 여부</th>
+              <th>이름</th>
               <th>전체 출석률</th>
+              <th>출석 상태</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="student in filteredAttendance" :key="student.id">
+            <tr v-for="student in students" :key="student.id">
               <td>{{ student.name }}</td>
-              <td>{{ student.contact }}</td>
-              <td>{{ student.attendance }}</td>
-              <td>{{ student.attendanceRate }}</td>
+              <td>{{ student.attendanceRate }}%</td>
+              <td>{{ student.status }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <!-- 월별 출석률 -->
+      <div v-if="selectedTab === '월별'">
+        <h2>월별 출석률</h2>
+        <label for="month">월 선택:</label>
+        <select id="month" v-model="selectedMonth" @change="filterMonthlyAttendance">
+          <option v-for="month in months" :key="month" :value="month">
+            {{ month }}월
+          </option>
+        </select>
+  
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>이름</th>
+              <th>출석률</th>
+              <th>출석 상태</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="student in filteredMonthlyAttendance" :key="student.id">
+              <td>{{ student.name }}</td>
+              <td>{{ student.attendanceRate }}%</td>
+              <td>{{ student.status }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <!-- 일별 출석여부 -->
+      <div v-if="selectedTab === '일별'">
+        <h2>일별 출석여부</h2>
+        <label for="date">날짜 선택:</label>
+        <input type="date" id="date" v-model="selectedDate" @change="filterDailyAttendance" />
+  
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>이름</th>
+              <th>출석 여부</th>
+              <th>출석 상태</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="student in filteredDailyAttendance" :key="student.id">
+              <td>{{ student.name }}</td>
+              <td>{{ student.isPresent ? 'Y' : 'N' }}</td>
+              <td>{{ student.status }}</td>
             </tr>
           </tbody>
         </table>
@@ -51,138 +92,173 @@
   
   <script>
   import { ref, computed } from "vue";
-  import VueCal from "vue-cal";
-  import "vue-cal/dist/vuecal.css";
   
   export default {
-    components: {
-      VueCal,
-    },
-    data() {
-      return {
-        viewMode: "all", // 전체, 월별, 일별
-        selectedDate: new Date(),
-        calendarEvents: [], // 캘린더에서 표시할 이벤트 (옵션)
-        students: [
-          {
-            id: 1,
-            name: "김학생",
-            contact: "010-1234-5678",
-            attendance: "Y",
-            attendanceRate: "95%",
-            dates: ["2024-12-24", "2024-12-23", "2024-12-22"],
-          },
-          {
-            id: 2,
-            name: "이학생",
-            contact: "010-5678-1234",
-            attendance: "N",
-            attendanceRate: "80%",
-            dates: ["2024-12-23", "2024-12-20"],
-          },
-        ],
-      };
-    },
-    computed: {
-      filteredAttendance() {
-        if (this.viewMode === "all") {
-          return this.students;
-        } else if (this.viewMode === "monthly") {
-          const selectedMonth = new Date(this.selectedDate).getMonth();
-          return this.students.map((student) => ({
-            ...student,
-            attendance:
-              student.dates.some(
-                (date) => new Date(date).getMonth() === selectedMonth
-              )
-                ? "Y"
-                : "N",
-          }));
-        } else if (this.viewMode === "daily") {
-          const selectedDay = new Date(this.selectedDate).toDateString();
-          return this.students.map((student) => ({
-            ...student,
-            attendance:
-              student.dates.some(
-                (date) => new Date(date).toDateString() === selectedDay
-              )
-                ? "Y"
-                : "N",
-          }));
+    setup() {
+      const startDate = new Date("2024-11-20");
+      const endDate = new Date("2025-05-16");
+  
+      const tabs = ["전체", "월별", "일별"];
+      const selectedTab = ref("전체");
+  
+      const students = ref([
+        { id: 1, name: "김학생", attendanceRate: 85, status: "출석" },
+        { id: 2, name: "이학생", attendanceRate: 90, status: "지각" },
+        { id: 3, name: "박학생", attendanceRate: 75, status: "병가" },
+      ]);
+  
+      const selectedMonth = ref(null);
+      const months = computed(() => {
+        const startYear = startDate.getFullYear();
+        const endYear = endDate.getFullYear();
+        const monthList = [];
+  
+        for (let year = startYear; year <= endYear; year++) {
+          const start = year === startYear ? startDate.getMonth() + 1 : 1;
+          const end = year === endYear ? endDate.getMonth() + 1 : 12;
+          for (let month = start; month <= end; month++) {
+            monthList.push(`${year}.${month.toString().padStart(2, "0")}`);
+          }
         }
-      },
-    },
-    methods: {
-      onDateClick(date) {
-        this.selectedDate = date;
-      },
+        return monthList;
+      });
+  
+      const selectedDate = ref(null);
+  
+      const filteredMonthlyAttendance = ref([]);
+      const filteredDailyAttendance = ref([]);
+  
+      const filterMonthlyAttendance = () => {
+        filteredMonthlyAttendance.value = students.value.map((student) => {
+          return { ...student, attendanceRate: Math.random() * 100, status: student.status };
+        });
+      };
+  
+      const filterDailyAttendance = () => {
+        filteredDailyAttendance.value = students.value.map((student) => {
+          return { ...student, isPresent: Math.random() > 0.5, status: student.status };
+        });
+      };
+  
+      const selectTab = (tab) => {
+        selectedTab.value = tab;
+        if (tab === "월별") filterMonthlyAttendance();
+        if (tab === "일별") filterDailyAttendance();
+      };
+  
+      const formatDate = (date) => {
+        return `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, "0")}.${date
+          .getDate()
+          .toString()
+          .padStart(2, "0")}`;
+      };
+  
+      return {
+        tabs,
+        selectedTab,
+        students,
+        startDate,
+        endDate,
+        months,
+        selectedMonth,
+        selectedDate,
+        filteredMonthlyAttendance,
+        filteredDailyAttendance,
+        selectTab,
+        filterMonthlyAttendance,
+        filterDailyAttendance,
+        formatDate,
+      };
     },
   };
   </script>
   
   <style scoped>
-  .attendance-page {
-    max-width: 1200px;
+  .attendance-management {
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px;
-    font-family: Arial, sans-serif;
-    color: #333;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
   .page-title {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #444;
+    color: #343a40;
   }
   
-  .filter-section {
-    margin-bottom: 20px;
+  .tabs {
     display: flex;
-    align-items: center;
+    margin-bottom: 20px;
     gap: 10px;
   }
   
-  .view-mode-select {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+  .tabs button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background-color: #e9ecef;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
   }
   
-  .calendar-section {
-    margin-bottom: 20px;
-  }
-  
-  .calendar-title {
-    font-size: 20px;
+  .tabs button.active {
+    background-color: #007bff;
+    color: #fff;
     font-weight: bold;
-    margin-bottom: 10px;
+  }
+  
+  .tabs button:hover {
+    background-color: #adb5bd;
   }
   
   .custom-table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
     background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 5px;
     overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .custom-table th,
   .custom-table td {
+    padding: 15px;
     text-align: left;
-    padding: 12px;
+    border-bottom: 1px solid #dee2e6;
     font-size: 14px;
-    border-bottom: 1px solid #ddd;
   }
   
   .custom-table th {
-    background-color: #f7f7f7;
+    background-color: #f1f3f5;
     font-weight: bold;
+    color: #495057;
   }
   
-  .custom-table tr:hover {
-    background-color: #f9f9f9;
+  .custom-table tbody tr:hover {
+    background-color: #e9ecef;
+  }
+  
+  label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #495057;
+  }
+  
+  select,
+  input[type="date"] {
+    margin-left: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
   }
   </style>
   

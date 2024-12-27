@@ -5,9 +5,10 @@ import { useInstructorStore } from '../../../stores/useInstructorStore';
 const instructorStore = useInstructorStore();
 
 onMounted(async () => {
-    await instructorStore.fetchHw()
-    console.log(instructorStore.hw_list)
+    await instructorStore.fetchDt()
+    console.log(instructorStore.dt_list)
 });
+
 </script>
 
 <template>
@@ -22,16 +23,16 @@ onMounted(async () => {
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        과제명
+                        Name
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        파일명
+                        File Name
                     </th>
                     <th scope="col" class="px-3 py-3">
-                        제출률
+                        File Size
                     </th>
                     <th scope="col" class="px-3 py-3">
-                        조회수
+                        View Count
                     </th>
                     <th scope="col" class="px-3 py-3">
                         Action
@@ -39,7 +40,7 @@ onMounted(async () => {
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" v-for="hw in instructorStore.hw_list">
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" v-for="dt in instructorStore.dt_list">
                     <td class="w-4 p-4">
                         <div class="flex items-center">
                             <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
@@ -47,16 +48,16 @@ onMounted(async () => {
                         </div>
                     </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{hw.assignmentName}}
+                        {{dt.dataName}}
                     </th>
                     <td class="px-6 py-4">
-                        {{hw.fileName}}
+                        {{dt.fileName}}
                     </td>
                     <td class="px-6 py-4">
-                        {{hw.submissionRate}}
+                        {{dt.fileSize}}
                     </td>
                     <td class="px-6 py-4">
-                        {{hw.viewCount}}
+                        {{dt.viewCount}}
                     </td>
                     <td class="px-6 py-4">
                         <button id="dropdownMenuIconButton" data-dropdown-toggle="dropdownDots" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600" type="button">

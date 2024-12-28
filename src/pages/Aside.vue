@@ -72,6 +72,8 @@
                                 </svg></span><span
                                 class="grow text-ellipsis line-clamp-1 pr-12">Styles</span><!--v-if--></a><!--v-if-->
                     </li>
+
+                    
                     <li><a class="flex cursor-pointer py-3 aside-menu-item dark:text-slate-300 dark:hover:text-white"><span
                                 class="inline-flex justify-center items-center w-16 h-6 flex-none"><svg
                                     viewBox="0 0 24 24" width="18" height="18" class="inline-block">

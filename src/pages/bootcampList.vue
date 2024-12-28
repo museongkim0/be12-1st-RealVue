@@ -71,5 +71,5 @@ const courses = ref([
         </tbody>
       </table>
     </div>
-    </div>
+        </div>
   </template>

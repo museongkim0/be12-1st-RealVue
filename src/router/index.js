@@ -17,20 +17,28 @@ import ManagerList from '../pages/manager/ManagerList.vue';
 import AttendanceManage from '../pages/manager/AttendanceManage.vue';
 import InstructorDash from '../pages/instructor/InstructorDash.vue';
 import InstStudInform from '../pages/Instructor/InstStudInform.vue';
+import StudentAside from '../pages/StudentAside.vue';
+import bootcampList from '../pages/bootcampList.vue';
+
 const router = createRouter({
     history: createWebHistory(),
     routes : [
         { path: '/a', component: FormsView },
         { path: '/b', component: LoginForm , meta: {hideAside: true , hideNav : true} },
         { path: '/c', component: SignupForm , meta: {hideAside: true , hideNav : true} },
-        { path: '/d', component: Studentdashboard },
-        { path: '/inst/dashboard', component: InstructorDash },
+        {
+            path: '/d',
+            component: Studentdashboard,
+            meta: { asideComponent: StudentAside  ,hideAside: false }, // StudentAside를 항상 사용
+        },     
+           { path: '/inst/dashboard', component: InstructorDash },
         { path: '/inst/studinform', component: InstStudInform },
         { path: '/manager/dashboard', component: ManagerDashboard },
         { path: '/manager/studentList', component: StudentList },
         { path: '/manager/instructorList', component: InstructorList },
         { path: '/manager/managerList', component: ManagerList },
         { path: '/manager/attendanceManage', component: AttendanceManage},
+        { path: '/bootcamp', component : bootcampList },
         // { path: '/c', component: Create },
         // { path: '/d', component: Signup },
         // { path: '/e', component: Login },

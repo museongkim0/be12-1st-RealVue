@@ -1,13 +1,26 @@
 <script setup>
 import { ref } from 'vue';
+import { useStudentStore } from '../stores/useStudentStore'
+
+
+const usestudent = useStudentStore();
+
+usestudent.getStudent();
+usestudent.get_curry();
+usestudent.get_homework();
+
 
 // Drawer의 열림 상태를 관리하는 변수
 const isDrawerOpen = ref(false);
+
 
 // Drawer를 열거나 닫는 함수
 const toggleDrawer = () => {
    isDrawerOpen.value = !isDrawerOpen.value;
 };
+
+ 
+
 </script>
 
 
@@ -121,32 +134,32 @@ const toggleDrawer = () => {
                            placeholder="Type product name" required="">
                      </div>
                      <div id="date-range-picker" date-rangepicker class="flex items-center col-span-2">
-            <div class="relative">
-              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Z" />
-                </svg>
-              </div>
-              <input id="datepicker-range-start" name="start" type="text"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Select date start">
-            </div>
-            <span class="mx-4 text-gray-500">to</span>
-            <div class="relative">
-              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Z" />
-                </svg>
-              </div>
-              <input id="datepicker-range-end" name="end" type="text"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Select date end">
-            </div>
-          </div>
+                        <div class="relative">
+                           <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                 <path
+                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Z" />
+                              </svg>
+                           </div>
+                           <input id="datepicker-range-start" name="start" type="text"
+                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              placeholder="Select date start">
+                        </div>
+                        <span class="mx-4 text-gray-500">to</span>
+                        <div class="relative">
+                           <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                 <path
+                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Z" />
+                              </svg>
+                           </div>
+                           <input id="datepicker-range-end" name="end" type="text"
+                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              placeholder="Select date end">
+                        </div>
+                     </div>
                      <div>
 
                      </div>
@@ -197,14 +210,15 @@ const toggleDrawer = () => {
                <form class="p-4 md:p-5">
                   <div class="grid gap-4 mb-4 grid-cols-2">
                      <div class="col-span-2">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">조퇴 할거얌</label>
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">조퇴
+                           할거얌</label>
                         <input type="text" name="name" id="name"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                            placeholder="Type product name" required="">
                      </div>
-                      
-                      
-                     
+
+
+
                      <div class="col-span-2">
                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                            사유 </label>
@@ -230,7 +244,7 @@ const toggleDrawer = () => {
 
       <!-- Drawer -->
       <div v-if="isDrawerOpen"
-         class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto bg-white dark:bg-gray-800 transition-transform" >
+         class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto bg-white dark:bg-gray-800 transition-transform">
          <h5 class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">
             Menu
          </h5>
@@ -246,20 +260,37 @@ const toggleDrawer = () => {
          </button>
          <ul class="py-4 space-y-2 font-medium">
             <li>
-               <a href="#"
+               <a  
                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                  <svg
-                     class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
-                     <path
-                        d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
-                     <path
-                        d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
-                  </svg>
-                  <span class="ml-3">Dashboard</span>
+                  <span class="ml-3">커리큘럼 진행 상황</span>
                </a>
+
+               <div class="timeline-item-point rounded-full bg-red-500 relative">
+                  <span
+                     class="inline-flex h-full w-full animate-ping absolute bg-red-500 opacity-100 rounded-full"></span>
+               </div>
             </li>
-            <!-- Add more navigation items here -->
+            <div>
+               <!-- 조건부 렌더링으로 curry_check 사용 -->
+               <div v-if="usestudent.curry_check.length > 0">
+                  <ol class="relative border-l border-gray-200 dark:border-gray-700">
+                     <li v-for="item in usestudent.curry_check" :key="item.day" class="mb-10 ml-4">
+                        <div
+                           :class="`absolute w-3 h-3 ${item.color} rounded-full -left-1.5 border border-white dark:border-gray-900`">
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                           {{ item.content }}
+                        </h3>
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                           Day {{ item.day }}
+                        </time>
+                     </li>
+                  </ol>
+               </div>
+               <div v-else>
+                  <p class="text-gray-500 dark:text-gray-400">데이터를 불러오는 중...</p>
+               </div>
+            </div>
          </ul>
       </div>
 
@@ -485,54 +516,16 @@ const toggleDrawer = () => {
 ">
             <h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">과제 현황</h1>
 
-            <li class="mb-10 ms-6">
-               <span
-                  class="absolute flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-blue-900 dark:text-blue-300">
-                  <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                     <path
-                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                  </svg>
-               </span>
-               <h3 class="mb-1 text-lg font-semibold text-gray-800 dark:text-white">
-                  Flowbite Application UI v2.0.0
-                  <span
-                     class="bg-blue-100 text-blue-600 text-xs font-medium ms-2 px-2 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Latest</span>
-               </h3>
-               <time class="block mb-2 text-sm font-normal text-gray-500 dark:text-gray-400">
-                  Released on January 13th, 2022
-               </time>
-               <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-                  Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and
-                  pre-order E-commerce & Marketing pages.
-               </p>
-               <a href="#"
-                  class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <svg class="w-4 h-4 me-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                     <path
-                        d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z" />
-                     <path
-                        d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
-                  </svg>
-                  Download ZIP
-               </a>
-            </li>
-
-            <li class="mb-10 ms-6">
-               <span
-                  class="absolute flex items-center justify-center w-8 h-8 bg-green-100 text-green-600 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900 dark:text-green-300">
-                  <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                     <path
-                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                  </svg>
-               </span>
-               <h3 class="mb-1 text-lg font-semibold text-gray-800 dark:text-white">Flowbite Figma v1.3.0</h3>
-               <time class="block mb-2 text-sm font-normal text-gray-500 dark:text-gray-400">Released on December 7th,
-                  2021</time>
-               <p class="text-sm text-gray-600 dark:text-gray-400">
-                  All of the pages and components are first designed in Figma and we keep a parity between the two
-                  versions even as we update the project.
-               </p>
-            </li>
+            <li v-for="assignment in usestudent.homework_check" :key="assignment.id" class="mb-10 ms-6">
+            <span class="absolute flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-blue-900 dark:text-blue-300">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Z" />
+                </svg>
+            </span>
+            <h3 class="mb-1 text-lg font-semibold text-gray-800 dark:text-white">{{ assignment.title }}</h3>
+            <time class="block mb-2 text-sm font-normal text-gray-500 dark:text-gray-400">{{ assignment.date }}</time>
+            <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">{{ assignment.contents }}</p>
+        </li>
          </ol>
 
       </div>

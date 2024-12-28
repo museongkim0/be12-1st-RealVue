@@ -16,6 +16,7 @@ import InstructorList from '../pages/manager/InstructorList.vue';
 import ManagerList from '../pages/manager/ManagerList.vue';
 import AttendanceManage from '../pages/manager/AttendanceManage.vue';
 import InstructorDash from '../pages/instructor/InstructorDash.vue';
+import InstStudInform from '../pages/Instructor/InstStudInform.vue';
 const router = createRouter({
     history: createWebHistory(),
     routes : [
@@ -24,6 +25,7 @@ const router = createRouter({
         { path: '/c', component: SignupForm , meta: {hideAside: true , hideNav : true} },
         { path: '/d', component: Studentdashboard },
         { path: '/inst/dashboard', component: InstructorDash },
+        { path: '/inst/studinform', component: InstStudInform },
         { path: '/manager/dashboard', component: ManagerDashboard },
         { path: '/manager/studentList', component: StudentList },
         { path: '/manager/instructorList', component: InstructorList },

@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 
-export const useStudentStore = defineStore('hugaList', {
+export const useStudentStore = defineStore('student', {
     state: () => ({
         student_check: []
         ,curry_check: []

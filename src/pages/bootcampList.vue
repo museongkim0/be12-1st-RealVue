@@ -1,31 +1,16 @@
 <script setup>
 import { ref } from "vue";
 
+import { usebootcamp } from '../stores/useBootcampStore';
+
+
+const useboot = usebootcamp();
+useboot.getBootcamp();
+
+
+
 // courses 데이터 정의
-const courses = ref([
-  {
-    title: "Java기반 백엔드 개발 & Cloud Docker 배포 과정 11기",
-    category: "백엔드",
-    status: "모집 중",
-    cost: "무료",
-    type: "오프라인",
-    duration: "25.01.13 ~ 25.08.01",
-    time: "월, 화, 수, 목, 금 / 9:00 ~ 18:00",
-    details: ["Java", "Spring", "JPA", "Docker"],
-    organizer: "중앙에이치티에이"
-  },
-  {
-    title: "Python 기반 데이터 분석 과정",
-    category: "데이터 분석",
-    status: "모집 마감",
-    cost: "유료",
-    type: "온라인",
-    duration: "24.11.01 ~ 25.05.01",
-    time: "월, 수, 금 / 10:00 ~ 15:00",
-    details: ["Pandas", "Numpy", "Matplotlib"],
-    organizer: "데이터랩스"
-  }
-]);
+ 
 </script>
 
 
@@ -46,12 +31,12 @@ const courses = ref([
             <th scope="col" class="px-6 py-3">기간</th>
             <th scope="col" class="px-6 py-3">시간</th>
             <th scope="col" class="px-6 py-3">특이사항</th>
-            <th scope="col" class="px-6 py-3">운영사</th>
+            <th scope="col" class="px-6 py-3">운영사</th    >
           </tr>
         </thead>
         <!-- 테이블 본문 -->
         <tbody>
-          <tr v-for="(course, index) in courses" :key="index" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <tr v-for="(course, index) in useboot.boot_campList" :key="index" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
               {{ course.title }}
             </th>

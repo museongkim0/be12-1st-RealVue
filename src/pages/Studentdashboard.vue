@@ -2,7 +2,6 @@
 import { ref } from 'vue';
 import { useStudentStore } from '../stores/useStudentStore'
 
-
 const usestudent = useStudentStore();
 
 usestudent.getStudent();
@@ -19,7 +18,7 @@ const toggleDrawer = () => {
    isDrawerOpen.value = !isDrawerOpen.value;
 };
 
- 
+
 
 </script>
 
@@ -106,11 +105,11 @@ const toggleDrawer = () => {
                         d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                   </svg>
                   <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">퇴실 체크</h3>
-                  <button data-modal-hide="popup-modal" type="button"
+                  <button data-modal-hide="popup-modal1" type="button"
                      class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                      퇴실 하기
                   </button>
-                  <button data-modal-hide="popup-modal" type="button"
+                  <button data-modal-hide="popup-modal1" type="button"
                      class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">취소
                   </button>
                </div>
@@ -260,7 +259,7 @@ const toggleDrawer = () => {
          </button>
          <ul class="py-4 space-y-2 font-medium">
             <li>
-               <a  
+               <a
                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <span class="ml-3">커리큘럼 진행 상황</span>
                </a>
@@ -517,15 +516,18 @@ const toggleDrawer = () => {
             <h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">과제 현황</h1>
 
             <li v-for="assignment in usestudent.homework_check" :key="assignment.id" class="mb-10 ms-6">
-            <span class="absolute flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-blue-900 dark:text-blue-300">
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Z" />
-                </svg>
-            </span>
-            <h3 class="mb-1 text-lg font-semibold text-gray-800 dark:text-white">{{ assignment.title }}</h3>
-            <time class="block mb-2 text-sm font-normal text-gray-500 dark:text-gray-400">{{ assignment.date }}</time>
-            <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">{{ assignment.contents }}</p>
-        </li>
+               <span
+                  class="absolute flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-blue-900 dark:text-blue-300">
+                  <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                     <path
+                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Z" />
+                  </svg>
+               </span>
+               <h3 class="mb-1 text-lg font-semibold text-gray-800 dark:text-white">{{ assignment.title }}</h3>
+               <time class="block mb-2 text-sm font-normal text-gray-500 dark:text-gray-400">{{ assignment.date
+                  }}</time>
+               <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">{{ assignment.contents }}</p>
+            </li>
          </ol>
 
       </div>

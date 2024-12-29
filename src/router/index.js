@@ -24,10 +24,10 @@ const router = createRouter({
     history: createWebHistory(),
     routes : [
         { path: '/a', component: FormsView },
-        { path: '/b', component: LoginForm , meta: {hideAside: true , hideNav : true} },
-        { path: '/c', component: SignupForm , meta: {hideAside: true , hideNav : true} },
+        { path: '/', component: LoginForm , meta: {hideAside: true , hideNav : true} },
+        { path: '/Signup', component: SignupForm , meta: {hideAside: true , hideNav : true} },
         {
-            path: '/d',
+            path: '/studentdashboard',
             component: Studentdashboard,
             meta: { asideComponent: StudentAside  ,hideAside: false }, // StudentAside를 항상 사용
         },     

@@ -10,7 +10,6 @@ import SignupForm from '../pages/SignupForm.vue';
 import { h } from 'vue';
 import Studentdashboard from '../pages/Studentdashboard.vue';
 import ManagerDashboard from '../pages/manager/ManagerDashboard.vue';
-import List from '../pages/manager/List.vue';
 import StudentList from '../pages/manager/StudentList.vue';
 import InstructorList from '../pages/manager/InstructorList.vue';
 import ManagerList from '../pages/manager/ManagerList.vue';

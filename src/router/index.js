@@ -15,11 +15,11 @@ import StudentList from '../pages/manager/StudentList.vue';
 import InstructorList from '../pages/manager/InstructorList.vue';
 import ManagerList from '../pages/manager/ManagerList.vue';
 import AttendanceManage from '../pages/manager/AttendanceManage.vue';
-import InstructorDash from '../pages/instructor/InstructorDash.vue';
+import InstructorDash from '../pages/Instructor/InstructorDash.vue';
 import InstStudInform from '../pages/Instructor/InstStudInform.vue';
 import StudentAside from '../pages/StudentAside.vue';
 import bootcampList from '../pages/bootcampList.vue';
-
+import common from '../pages/commondashboard.vue';
 const router = createRouter({
     history: createWebHistory(),
     routes : [
@@ -39,6 +39,7 @@ const router = createRouter({
         { path: '/manager/managerList', component: ManagerList },
         { path: '/manager/attendanceManage', component: AttendanceManage},
         { path: '/bootcamp', component : bootcampList },
+        {path : '/common', component : common}
         // { path: '/c', component: Create },
         // { path: '/d', component: Signup },
         // { path: '/e', component: Login },

@@ -1,225 +1,160 @@
 <script setup>
+import { reactive } from 'vue'
+
 
 </script>
 
 <template>
-    <div style="background-color: whitesmoke;"
-    class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
-        <section class="p-6 xl:max-w-6xl xl:mx-auto bg-gray-100 dark:bg-gray-900">
-            <div class="flex">
-                <!-- Card 0 -->
-                <div class="w-full md:w-1/2 p-4 flex flex-col">
-                    <div class="flex items-center p-4 bg-white rounded-lg shadow-md dark:bg-gray-800 flex-grow">
-                        <img class="w-16 h-16 rounded-full mr-4" src="https://randomuser.me/api/portraits/men/1.jpg" alt="Student Image">
-                        <div>
-                        <p class="text-xl font-bold text-gray-800 dark:text-gray-100">John Doe</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Email: johndoe@example.com</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Phone no.: 123-4567-8901</p>
-                    </div>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-4 w-1/2 p-4 bg-gray-100 dark:bg-gray-900">
-                    <!-- Card 1 -->
-                    <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
-                        <div>
-                        <p class="text-sm font-medium text-gray-500">출석</p>
-                        <p class="text-2xl font-bold text-gray-800">0</p>
-                        </div>
-                        <div class="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="size-10 text-primary dark:text-accent" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
-                        <div>
-                        <p class="text-sm font-medium text-gray-500">남은 휴가</p>
-                        <p class="text-2xl font-bold text-gray-800">0</p>
-                        </div>
-                        <div class="flex items-center justify-center w-10 h-10 bg-purple-100 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-500" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h11M9 21l-6-6 6-6m6 6h6" />
-                        </svg>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
-                        <div>
-                        <p class="text-sm font-medium text-gray-500">지각</p>
-                        <p class="text-2xl font-bold text-gray-800">0</p>
-                        </div>
-                        <div class="flex items-center justify-center w-10 h-10 bg-pink-100 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-pink-500" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h11M9 21l-6-6 6-6m6 6h6" />
-                        </svg>
-                        </div>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
-                        <div>
-                        <p class="text-sm font-medium text-gray-500">조퇴</p>
-                        <p class="text-2xl font-bold text-gray-800">0</p>
-                        </div>
-                        <div class="flex items-center justify-center w-10 h-10 bg-orange-100 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-orange-500" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h11M9 21l-6-6 6-6m6 6h6" />
-                        </svg>
-                        </div>
-                    </div>
-
-                    <!-- Card 5 -->
-                    <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
-                        <div>
-                        <p class="text-sm font-medium text-gray-500">외출</p>
-                        <p class="text-2xl font-bold text-gray-800">0</p>
-                        </div>
-                        <div class="flex items-center justify-center w-10 h-10 bg-green-100 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-500" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h11M9 21l-6-6 6-6m6 6h6" />
-                        </svg>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
-                        <div>
-                        <p class="text-sm font-medium text-gray-500">조퇴</p>
-                        <p class="text-2xl font-bold text-gray-800">0</p>
-                        </div>
-                        <div class="flex items-center justify-center w-10 h-10 bg-green-100 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-500" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h11M9 21l-6-6 6-6m6 6h6" />
-                        </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="p-8 bg-gray-100 dark:bg-gray-900">
-                <h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">게시판</h1>
-                <div class="overflow-x-auto shadow-lg rounded-lg">
-                    <table class="min-w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 uppercase text-xs">
-                        <tr>
-                            <th scope="col" class="px-6 py-4">제목</th>
-                            <th scope="col" class="px-6 py-4">글쓴이</th>
-                            <th scope="col" class="px-6 py-4">카테고리</th>
-                            <th scope="col" class="px-6 py-4">작성 일자</th>
-                            <th scope="col" class="px-6 py-4 text-right">
-                                <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">더보기</a>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Row 1 -->
-                        <tr class="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">애플 맥북 프로 17"</td>
-                            <td class="px-6 py-4">홍길동</td>
-                            <td class="px-6 py-4">랩탑</td>
-                            <td class="px-6 py-4">2024-01-01</td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">글보기</a>
-                            </td>
-                        </tr>
-                        <!-- Row 2 -->
-                        <tr class="bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">마이크로소프트 서피스 프로</td>
-                            <td class="px-6 py-4">김철수</td>
-                            <td class="px-6 py-4">랩탑 PC</td>
-                            <td class="px-6 py-4">2024-01-02</td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">글보기</a>
-                            </td>
-                        </tr>
-                        <!-- Row 3 -->
-                        <tr class="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">매직 마우스 2</td>
-                            <td class="px-6 py-4">이영희</td>
-                            <td class="px-6 py-4">액세서리</td>
-                            <td class="px-6 py-4">2024-01-03</td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">글보기</a>
-                            </td>
-                        </tr>
-                        <!-- Additional Rows -->
-                        <tr class="bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">매직 키보드</td>
-                            <td class="px-6 py-4">박지민</td>
-                            <td class="px-6 py-4">액세서리</td>
-                            <td class="px-6 py-4">2024-01-04</td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">글보기</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="p-8 bg-gray-100 dark:bg-gray-900">
-                <h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">과제 현황</h1>
-                <ol class="relative border-s border-gray-200 dark:border-gray-700 p-6 bg-white rounded-lg shadow-lg" style="margin-left: 40px;">
-                    <li class="mb-10 ms-6">
-                    <span
-                        class="absolute flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-blue-900 dark:text-blue-300">
-                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                        </svg>
-                    </span>
-                    <h3 class="mb-1 text-lg font-semibold text-gray-800 dark:text-white">
-                        Flowbite Application UI v2.0.0
-                        <span
-                            class="bg-blue-100 text-blue-600 text-xs font-medium ms-2 px-2 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Latest</span>
-                    </h3>
-                    <time class="block mb-2 text-sm font-normal text-gray-500 dark:text-gray-400">
-                        Released on January 13th, 2022
-                    </time>
-                    <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-                        Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and
-                        pre-order E-commerce & Marketing pages.
-                    </p>
-                    <a href="#"
-                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <svg class="w-4 h-4 me-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z" />
-                            <path
-                                d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
-                        </svg>
-                        Download ZIP
-                    </a>
-                    </li>
-
-                    <li class="mb-10 ms-6">
-                    <span
-                        class="absolute flex items-center justify-center w-8 h-8 bg-green-100 text-green-600 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900 dark:text-green-300">
-                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                        </svg>
-                    </span>
-                    <h3 class="mb-1 text-lg font-semibold text-gray-800 dark:text-white">Flowbite Figma v1.3.0</h3>
-                    <time class="block mb-2 text-sm font-normal text-gray-500 dark:text-gray-400">Released on December 7th,
-                        2021</time>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">
-                        All of the pages and components are first designed in Figma and we keep a parity between the two
-                        versions even as we update the project.
-                    </p>
-                    </li>
-                </ol>
+    <section class="p-6 xl:max-w-6xl xl:mx-auto">
+        <section class="mb-6 flex items-center justify-between">
+            <div class="flex items-center justify-start"><span
+                    class="inline-flex justify-center items-center w-12 h-12 rounded-full bg-white text-black dark:bg-slate-900/70 dark:text-white mr-3"><svg
+                        viewBox="0 0 24 24" width="24" height="24" class="inline-block">
+                        <path fill="currentColor"
+                            d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z">
+                        </path>
+                    </svg></span>
+                <h1 class="text-3xl leading-tight">Profile</h1>
             </div>
         </section>
-    </div>
+        <div class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex mb-6">
+            <div class="flex-1 p-6">
+                <div class="justify-around lg:justify-center items-center block md:flex">
+                    <div class="flex items-center justify-center mb-6 md:mb-0">
+                        <div class="lg:mx-12"><img
+                                src="https://api.dicebear.com/7.x/avataaars/svg?seed=doe-doe-doe-example-com"
+                                alt="John Doe"
+                                class="rounded-full block h-auto w-full max-w-full bg-gray-100 dark:bg-slate-800"></div>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <div class="space-y-3 text-center md:text-left lg:mx-12">
+                            <div class="flex justify-center md:block"><label class="switch"><span class="check"></span></label></div>
+                            <h1 class="text-2xl"> Howdy, <b>John Doe</b>! </h1>
+                            <p>Last login <b>12 mins ago</b> from <b>127.0.0.1</b></p>
+                            <div class="flex justify-center md:block">
+                                <div
+                                    class="inline-flex items-center capitalize leading-none text-sm border rounded-full py-1.5 px-4 bg-blue-500 border-blue-500 text-white">
+                                    <span class="inline-flex justify-center items-center w-4 h-4 mr-2"><svg
+                                            viewBox="0 0 24 24" width="16" height="16" class="inline-block">
+                                            <path fill="currentColor"
+                                                d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z">
+                                            </path>
+                                        </svg></span><span>Verified</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!---->
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <form class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex">
+                <div class="flex-1 p-6">
+                    <div class="mb-6 last:mb-0"><label class="block font-bold mb-2">Avatar</label>
+                        <div class="">
+                            <div class="flex items-stretch justify-start relative"><label class="inline-flex"><a
+                                        class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 py-2 px-3"
+                                        disabled="false"><span
+                                            class="inline-flex justify-center items-center w-6 h-6"><svg
+                                                viewBox="0 0 24 24" width="16" height="16" class="inline-block">
+                                                <path fill="currentColor"
+                                                    d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"></path>
+                                            </svg></span><span class="px-2">Upload</span></a><input type="file"
+                                        class="absolute top-0 left-0 w-full h-full opacity-0 outline-none cursor-pointer -z-1"></label><!---->
+                            </div>
+                        </div>
+                        <div class="text-xs text-gray-500 dark:text-slate-400 mt-1">Max 500kb</div>
+                    </div>
+                    <div class="mb-6 last:mb-0"><label class="block font-bold mb-2">Name</label>
+                        <div class="">
+                            <div class="relative"><input name="username" autocomplete="username" required="" type="text"
+                                    class="px-3 py-2 max-w-full focus:ring focus:outline-none border-gray-700 rounded w-full dark:placeholder-gray-400 h-12 border bg-white dark:bg-slate-800 pl-10"><span
+                                    class="inline-flex justify-center items-center w-10 h-12 absolute top-0 left-0 z-10 pointer-events-none text-gray-500 dark:text-slate-400"><svg
+                                        viewBox="0 0 24 24" width="16" height="16" class="inline-block">
+                                        <path fill="currentColor"
+                                            d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z">
+                                        </path>
+                                    </svg></span></div>
+                        </div>
+                        <div class="text-xs text-gray-500 dark:text-slate-400 mt-1">Required. Your name</div>
+                    </div>
+                    <div class="mb-6 last:mb-0"><label class="block font-bold mb-2">E-mail</label>
+                        <div class="">
+                            <div class="relative"><input name="email" autocomplete="email" required="" type="email"
+                                    class="px-3 py-2 max-w-full focus:ring focus:outline-none border-gray-700 rounded w-full dark:placeholder-gray-400 h-12 border bg-white dark:bg-slate-800 pl-10"><span
+                                    class="inline-flex justify-center items-center w-10 h-12 absolute top-0 left-0 z-10 pointer-events-none text-gray-500 dark:text-slate-400"><svg
+                                        viewBox="0 0 24 24" width="16" height="16" class="inline-block">
+                                        <path fill="currentColor"
+                                            d="M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4M17,17H7V15H17M17,13H7V11H17M20,9H17V6H20">
+                                        </path>
+                                    </svg></span></div>
+                        </div>
+                        <div class="text-xs text-gray-500 dark:text-slate-400 mt-1">Required. Your e-mail</div>
+                    </div>
+                </div>
+                <footer class="p-6">
+                    <div class="flex items-center justify-start flex-wrap -mb-3"><button
+                            class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 py-2 px-3 mr-3 last:mr-0 mb-3"
+                            type="submit"><!----><span class="px-2">Submit</span></button><button
+                            class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 text-blue-600 dark:text-blue-500 hover:bg-blue-600 hover:text-white hover:dark:text-white hover:dark:border-blue-600 py-2 px-3 mr-3 last:mr-0 mb-3"
+                            type="button"><!----><span class="px-2">Options</span></button></div>
+                </footer>
+            </form>
+            <form class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex">
+                <div class="flex-1 p-6">
+                    <div class="mb-6 last:mb-0"><label class="block font-bold mb-2">Current password</label>
+                        <div class="">
+                            <div class="relative"><input name="password_current" autocomplete="current-password"
+                                    required="" type="password"
+                                    class="px-3 py-2 max-w-full focus:ring focus:outline-none border-gray-700 rounded w-full dark:placeholder-gray-400 h-12 border bg-white dark:bg-slate-800 pl-10"><span
+                                    class="inline-flex justify-center items-center w-10 h-12 absolute top-0 left-0 z-10 pointer-events-none text-gray-500 dark:text-slate-400"><svg
+                                        viewBox="0 0 24 24" width="16" height="16" class="inline-block">
+                                        <path fill="currentColor"
+                                            d="M21 13H14.4L19.1 17.7L17.7 19.1L13 14.4V21H11V14.3L6.3 19L4.9 17.6L9.4 13H3V11H9.6L4.9 6.3L6.3 4.9L11 9.6V3H13V9.4L17.6 4.8L19 6.3L14.3 11H21V13Z">
+                                        </path>
+                                    </svg></span></div>
+                        </div>
+                        <div class="text-xs text-gray-500 dark:text-slate-400 mt-1">Required. Your current password
+                        </div>
+                    </div>
+                    <hr class="my-6 -mx-6 dark:border-slate-800 border-t border-gray-100">
+                    <div class="mb-6 last:mb-0"><label class="block font-bold mb-2">New password</label>
+                        <div class="">
+                            <div class="relative"><input name="password" autocomplete="new-password" required=""
+                                    type="password"
+                                    class="px-3 py-2 max-w-full focus:ring focus:outline-none border-gray-700 rounded w-full dark:placeholder-gray-400 h-12 border bg-white dark:bg-slate-800 pl-10"><span
+                                    class="inline-flex justify-center items-center w-10 h-12 absolute top-0 left-0 z-10 pointer-events-none text-gray-500 dark:text-slate-400"><svg
+                                        viewBox="0 0 24 24" width="16" height="16" class="inline-block">
+                                        <path fill="currentColor"
+                                            d="M17,7H22V17H17V19A1,1 0 0,0 18,20H20V22H17.5C16.95,22 16,21.55 16,21C16,21.55 15.05,22 14.5,22H12V20H14A1,1 0 0,0 15,19V5A1,1 0 0,0 14,4H12V2H14.5C15.05,2 16,2.45 16,3C16,2.45 16.95,2 17.5,2H20V4H18A1,1 0 0,0 17,5V7M2,7H13V9H4V15H13V17H2V7M20,15V9H17V15H20M8.5,12A1.5,1.5 0 0,0 7,10.5A1.5,1.5 0 0,0 5.5,12A1.5,1.5 0 0,0 7,13.5A1.5,1.5 0 0,0 8.5,12M13,10.89C12.39,10.33 11.44,10.38 10.88,11C10.32,11.6 10.37,12.55 11,13.11C11.55,13.63 12.43,13.63 13,13.11V10.89Z">
+                                        </path>
+                                    </svg></span></div>
+                        </div>
+                        <div class="text-xs text-gray-500 dark:text-slate-400 mt-1">Required. New password</div>
+                    </div>
+                    <div class="mb-6 last:mb-0"><label class="block font-bold mb-2">Confirm password</label>
+                        <div class="">
+                            <div class="relative"><input name="password_confirmation" autocomplete="new-password"
+                                    required="" type="password"
+                                    class="px-3 py-2 max-w-full focus:ring focus:outline-none border-gray-700 rounded w-full dark:placeholder-gray-400 h-12 border bg-white dark:bg-slate-800 pl-10"><span
+                                    class="inline-flex justify-center items-center w-10 h-12 absolute top-0 left-0 z-10 pointer-events-none text-gray-500 dark:text-slate-400"><svg
+                                        viewBox="0 0 24 24" width="16" height="16" class="inline-block">
+                                        <path fill="currentColor"
+                                            d="M17,7H22V17H17V19A1,1 0 0,0 18,20H20V22H17.5C16.95,22 16,21.55 16,21C16,21.55 15.05,22 14.5,22H12V20H14A1,1 0 0,0 15,19V5A1,1 0 0,0 14,4H12V2H14.5C15.05,2 16,2.45 16,3C16,2.45 16.95,2 17.5,2H20V4H18A1,1 0 0,0 17,5V7M2,7H13V9H4V15H13V17H2V7M20,15V9H17V15H20M8.5,12A1.5,1.5 0 0,0 7,10.5A1.5,1.5 0 0,0 5.5,12A1.5,1.5 0 0,0 7,13.5A1.5,1.5 0 0,0 8.5,12M13,10.89C12.39,10.33 11.44,10.38 10.88,11C10.32,11.6 10.37,12.55 11,13.11C11.55,13.63 12.43,13.63 13,13.11V10.89Z">
+                                        </path>
+                                    </svg></span></div>
+                        </div>
+                        <div class="text-xs text-gray-500 dark:text-slate-400 mt-1">Required. New password one more time
+                        </div>
+                    </div>
+                </div>
+                <footer class="p-6">
+                    <div class="flex items-center justify-start flex-wrap -mb-3"><button
+                            class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 py-2 px-3 mr-3 last:mr-0 mb-3"
+                            type="submit"><!----><span class="px-2">Submit</span></button><button
+                            class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 text-blue-600 dark:text-blue-500 hover:bg-blue-600 hover:text-white hover:dark:text-white hover:dark:border-blue-600 py-2 px-3 mr-3 last:mr-0 mb-3"
+                            type="button"><!----><span class="px-2">Options</span></button></div>
+                </footer>
+            </form>
+        </div>
+    </section>
 </template>
-
-<style scoped>
-
-</style>

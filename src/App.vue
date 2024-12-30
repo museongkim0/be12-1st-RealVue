@@ -3,7 +3,6 @@ import Aside from './pages/Aside.vue'
 import Nav from './pages/Nav.vue'
 import router from './router';
 import {useRoute} from 'vue-router'
-import StudentAside from './pages/StudentAside.vue';
 
 const route = useRoute();
 </script>

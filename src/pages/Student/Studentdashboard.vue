@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import Datepicker from 'vue3-datepicker';
-import { useStudentStore } from '../stores/useStudentStore'
+import { useStudentStore } from '../../stores/useStudentStore'
 
 const usestudent = useStudentStore();
 const startDate = ref(null);

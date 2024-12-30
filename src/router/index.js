@@ -8,7 +8,8 @@ import Aside from '../pages/Aside.vue';
 import FormsView from '../pages/FormsView.vue';
 import SignupForm from '../pages/SignupForm.vue';
 import { h } from 'vue';
-import Studentdashboard from '../pages/Studentdashboard.vue';
+import Studentdashboard from '../pages/Student/Studentdashboard.vue';
+import BootcampInfo from '../pages/Student/BootcampInfo.vue';
 import ManagerDashboard from '../pages/manager/ManagerDashboard.vue';
 import List from '../pages/manager/List.vue';
 import StudentList from '../pages/manager/StudentList.vue';
@@ -17,7 +18,7 @@ import ManagerList from '../pages/manager/ManagerList.vue';
 import AttendanceManage from '../pages/manager/AttendanceManage.vue';
 import InstructorDash from '../pages/Instructor/InstructorDash.vue';
 import InstStudInform from '../pages/Instructor/InstStudInform.vue';
-import StudentAside from '../pages/StudentAside.vue';
+import StudentAside from '../pages/Student/StudentAside.vue';
 import bootcampList from '../pages/bootcampList.vue';
 import common from '../pages/commondashboard.vue';
 const router = createRouter({
@@ -39,7 +40,8 @@ const router = createRouter({
         { path: '/manager/managerList', component: ManagerList },
         { path: '/manager/attendanceManage', component: AttendanceManage},
         { path: '/bootcamp', component : bootcampList },
-        {path : '/common', component : common}
+        {path : '/common', component : common},
+        { path:'/bootcampInfo', component: BootcampInfo},
         // { path: '/c', component: Create },
         // { path: '/d', component: Signup },
         // { path: '/e', component: Login },

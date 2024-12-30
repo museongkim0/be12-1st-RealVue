@@ -1,4 +1,7 @@
 <template>
+    
+    <div style="background-color: whitesmoke;"
+    class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
     <div>
       <!-- 오버레이 -->
       <div class="flex z-30 items-center flex-col justify-center overflow-hidden fixed inset-0" v-show="isOverlayVisible">
@@ -16,10 +19,10 @@
             </span>
             <h1 class="text-3xl font-bold leading-tight">질의응답</h1>
           </div>
-          <button class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded-none border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 py-2 px-4 mr-3 last:mr-0 mb-3 ml-auto text-sm">
+          <!-- 목록 버튼: Vue Router 사용 -->
+          <router-link to="/board/freeboard" class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded-none border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 py-2 px-4 mr-3 last:mr-0 mb-3 ml-auto text-sm">
             <span class="px-2">목록</span>
-            <a href="./board/managerboard.vue"></a>
-          </button>
+          </router-link>
         </section>
   
         <div class="rounded-2xl flex-col dark:bg-slate-300/70 bg-white flex">
@@ -66,6 +69,8 @@
         </div>
       </section>
     </div>
+    </div>
+    
   </template>
   
   <script>
@@ -98,6 +103,5 @@
   </script>
   
   <style scoped>
-  
   </style>
   

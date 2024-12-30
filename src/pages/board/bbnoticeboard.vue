@@ -1,4 +1,6 @@
 <template>
+  <div style="background-color: whitesmoke;"
+  class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
     <div>
       <!-- 오버레이 -->
       <div class="flex z-30 items-center flex-col justify-center overflow-hidden fixed inset-0" v-show="isOverlayVisible">
@@ -16,9 +18,9 @@
             </span>
             <h1 class="text-3xl font-bold leading-tight">공지사항</h1>
           </div>
-          <button @click="goToList" class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded-none border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 py-2 px-4 mr-3 last:mr-0 mb-3 ml-auto text-sm">
+          <router-link to="/board/managerboard" class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded-none border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 py-2 px-4 mr-3 last:mr-0 mb-3 ml-auto text-sm">
             <span class="px-2">목록</span>
-          </button>
+          </router-link>
         </section>
   
         <div class="rounded-2xl flex-col dark:bg-slate-300/70 bg-white flex">
@@ -44,6 +46,7 @@
         </div>
       </section>
     </div>
+  </div>
   </template>
   
   <script>
@@ -53,12 +56,7 @@
         isOverlayVisible: false, // 오버레이 표시 여부
       };
     },
-    methods: {
-      goToList() {
-        // 목록 페이지로 이동 (라우터를 사용할 경우, router.push() 등 사용 가능)
-        this.$router.push('/board/managerboard');
-      },
-    },
+   
   };
   </script>
   

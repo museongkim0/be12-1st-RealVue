@@ -23,9 +23,9 @@ menuToggle.addEventListener('click', () => {
       <!-- Menu Items -->
       <nav class="flex-1 px-4 py-6 space-y-2">
         <a
-          href="/student-dashboard"
+          href="/bootcamp"
           class="block py-2 px-3 rounded-md text-gray-700 hover:bg-gray-200 hover:text-blue-600 dark:text-gray-300 dark:hover:bg-slate-700 dark:hover:text-white">
-          Dashboard
+          부트캠프
         </a>
         <a
           href="/student-assignments"

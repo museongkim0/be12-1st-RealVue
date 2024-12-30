@@ -1,8 +1,18 @@
 <script setup>
 import { ref } from 'vue';
-import { useStudentStore } from '../stores/useStudentStore'
+import axios from 'axios';
+import { useRouter } from 'vue-router';
+import Datepicker from 'vue3-datepicker';
+import { useStudentStore } from '../../stores/useStudentStore'
 
 const usestudent = useStudentStore();
+const startDate = ref(null);
+const endDate = ref(null);
+const router = useRouter();
+
+// 임시. 백엔드가 없으므로 임의로 팝업을 닫는다.
+const showPopup1 = ref(false);
+const showPopup2 = ref(false);
 
 usestudent.getStudent();
 usestudent.get_curry();
@@ -18,7 +28,30 @@ const toggleDrawer = () => {
    isDrawerOpen.value = !isDrawerOpen.value;
 };
 
+const handleSubmit = async (event) => {
+  event.preventDefault();
 
+  const formData = new FormData(event.target);
+  const data = Object.fromEntries(formData.entries());
+
+  try {
+   const response = await axios.post('/api/submit', data, {
+         headers: {
+            'Content-Type': 'application/json',
+         },
+      });
+
+    if (response.ok) {
+      console.log('Form submitted successfully');
+    } else {
+      console.error('Form submission failed');
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error);
+  }finally { // 일단 임의로 팝업만 닫는다.
+      window.location.reload();
+   }
+};
 
 </script>
 
@@ -123,45 +156,24 @@ const toggleDrawer = () => {
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
 
 
-               <form class="p-4 md:p-5">
+               <form @submit.prevent="handleSubmit" class="p-4 md:p-5">
                   <div class="grid gap-4 mb-4 grid-cols-2">
                      <div class="col-span-2">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">휴가
                            신청</label>
                         <input type="text" name="name" id="name"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                           placeholder="Type product name" required="">
+                           placeholder="사유 요약" required="">
                      </div>
-                     <div id="date-range-picker" date-rangepicker class="flex items-center col-span-2">
-                        <div class="relative">
-                           <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                 <path
-                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Z" />
-                              </svg>
-                           </div>
-                           <input id="datepicker-range-start" name="start" type="text"
-                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                              placeholder="Select date start">
-                        </div>
-                        <span class="mx-4 text-gray-500">to</span>
-                        <div class="relative">
-                           <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                 <path
-                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Z" />
-                              </svg>
-                           </div>
-                           <input id="datepicker-range-end" name="end" type="text"
-                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                              placeholder="Select date end">
+                     <div class="col-span-2">
+                        <label for="date-range" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">날짜 범위</label>
+                        <div class="flex items-center">
+                           <Datepicker v-model="startDate" placeholder="Select start date" class="w-full" />
+                           <span class="mx-4 text-gray-500">to</span>
+                           <Datepicker v-model="endDate" placeholder="Select end date" class="w-full" />
                         </div>
                      </div>
-                     <div>
-
-                     </div>
+                     
                      <div class="col-span-2 ">
                         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> 목록
                         </label>
@@ -206,7 +218,7 @@ const toggleDrawer = () => {
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
 
 
-               <form class="p-4 md:p-5">
+               <form @submit.prevent="handleSubmit" class="p-4 md:p-5">
                   <div class="grid gap-4 mb-4 grid-cols-2">
                      <div class="col-span-2">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">조퇴
@@ -512,9 +524,11 @@ const toggleDrawer = () => {
          <ol class="relative border-s border-gray-200 dark:border-gray-700 p-6 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-lg"
             style="
     margin-left: 40px;
-">
+">           
             <h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">과제 현황</h1>
-
+            <div  class="px-6 py-4 text-right">
+               <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">더보기</a>
+               </div>
             <li v-for="assignment in usestudent.homework_check" :key="assignment.id" class="mb-10 ms-6">
                <span
                   class="absolute flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-blue-900 dark:text-blue-300">

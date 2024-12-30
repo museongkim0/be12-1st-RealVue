@@ -1,3 +1,21 @@
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { usebootcamp } from '../../stores/useBootcampStore';
+
+const useboot = usebootcamp();
+
+useboot.getBootcampcurry();
+
+
+</script>
+
+
+
+
+
+
+
 <template>
     <div style="background-color: whitesmoke;"
         class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
@@ -50,247 +68,15 @@
         <section class="mt-8 px-4">
             <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">커리큘럼</h2>
             <ol class="relative border-l border-gray-200 dark:border-gray-700">
-                <li class="mb-5 ml-4">
+                <li v-for="item in useboot.boot_camp_curry" :key="item.날짜" class="mb-5 ml-4">
                     <div
                         class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
                     </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">1일차</time>
+                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                        {{ item.날짜 }}
+                    </time>
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        Application UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">2일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        Marketing UI design in Figma
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
-                    </h3>
-                </li>
-                <li class="mb-5 ml-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3일차</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        E-Commerce UI code in Tailwind CSS
+                        {{ item.기술 }}
                     </h3>
                 </li>
             </ol>

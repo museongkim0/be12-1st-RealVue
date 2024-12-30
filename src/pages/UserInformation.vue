@@ -5,7 +5,7 @@ import { reactive } from 'vue'
 </script>
 
 <template>
-    <section class="p-6 xl:max-w-6xl xl:mx-auto">
+    <section class="p-6 xl:max-w-6xl xl:mx-auto pt-20 pl-64">
         <section class="mb-6 flex items-center justify-between">
             <div class="flex items-center justify-start"><span
                     class="inline-flex justify-center items-center w-12 h-12 rounded-full bg-white text-black dark:bg-slate-900/70 dark:text-white mr-3"><svg
@@ -49,7 +49,7 @@ import { reactive } from 'vue'
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <form class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex">
                 <div class="flex-1 p-6">
-                    <div class="mb-6 last:mb-0"><label class="block font-bold mb-2">Avatar</label>
+                    <div class="mb-6 last:mb-0"><label class="block font-bold mb-2">프로필 사진</label>
                         <div class="">
                             <div class="flex items-stretch justify-start relative"><label class="inline-flex"><a
                                         class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 py-2 px-3"
@@ -66,20 +66,22 @@ import { reactive } from 'vue'
                     </div>
                     <div class="mb-6 last:mb-0"><label class="block font-bold mb-2">Name</label>
                         <div class="">
-                            <div class="relative"><input name="username" autocomplete="username" required="" type="text"
-                                    class="px-3 py-2 max-w-full focus:ring focus:outline-none border-gray-700 rounded w-full dark:placeholder-gray-400 h-12 border bg-white dark:bg-slate-800 pl-10"><span
-                                    class="inline-flex justify-center items-center w-10 h-12 absolute top-0 left-0 z-10 pointer-events-none text-gray-500 dark:text-slate-400"><svg
-                                        viewBox="0 0 24 24" width="16" height="16" class="inline-block">
+                            <div class="relative">
+                                <span class="px-3 py-2 max-w-full border-gray-700 rounded w-full dark:placeholder-gray-400 h-12 border bg-gray-200 dark:bg-slate-800 pl-10 inline-block">John Doe</span>
+                                <span class="inline-flex justify-center items-center w-10 h-12 absolute top-0 left-0 z-10 pointer-events-none text-gray-500 dark:text-slate-400">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" class="inline-block">
                                         <path fill="currentColor"
                                             d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z">
                                         </path>
-                                    </svg></span></div>
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
-                        <div class="text-xs text-gray-500 dark:text-slate-400 mt-1">Required. Your name</div>
                     </div>
                     <div class="mb-6 last:mb-0"><label class="block font-bold mb-2">E-mail</label>
                         <div class="">
-                            <div class="relative"><input name="email" autocomplete="email" required="" type="email"
+                            <div class="relative"><input name="email" autocomplete="email" type="email"
+                                    value="example@example.com"
                                     class="px-3 py-2 max-w-full focus:ring focus:outline-none border-gray-700 rounded w-full dark:placeholder-gray-400 h-12 border bg-white dark:bg-slate-800 pl-10"><span
                                     class="inline-flex justify-center items-center w-10 h-12 absolute top-0 left-0 z-10 pointer-events-none text-gray-500 dark:text-slate-400"><svg
                                         viewBox="0 0 24 24" width="16" height="16" class="inline-block">
@@ -88,16 +90,8 @@ import { reactive } from 'vue'
                                         </path>
                                     </svg></span></div>
                         </div>
-                        <div class="text-xs text-gray-500 dark:text-slate-400 mt-1">Required. Your e-mail</div>
                     </div>
                 </div>
-                <footer class="p-6">
-                    <div class="flex items-center justify-start flex-wrap -mb-3"><button
-                            class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 py-2 px-3 mr-3 last:mr-0 mb-3"
-                            type="submit"><!----><span class="px-2">Submit</span></button><button
-                            class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 text-blue-600 dark:text-blue-500 hover:bg-blue-600 hover:text-white hover:dark:text-white hover:dark:border-blue-600 py-2 px-3 mr-3 last:mr-0 mb-3"
-                            type="button"><!----><span class="px-2">Options</span></button></div>
-                </footer>
             </form>
             <form class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex">
                 <div class="flex-1 p-6">
@@ -113,7 +107,7 @@ import { reactive } from 'vue'
                                         </path>
                                     </svg></span></div>
                         </div>
-                        <div class="text-xs text-gray-500 dark:text-slate-400 mt-1">Required. Your current password
+                        <div class="text-xs text-gray-500 dark:text-slate-400 mt-1">필수! 현재 비밀번호를 입력해주세요
                         </div>
                     </div>
                     <hr class="my-6 -mx-6 dark:border-slate-800 border-t border-gray-100">
@@ -129,7 +123,7 @@ import { reactive } from 'vue'
                                         </path>
                                     </svg></span></div>
                         </div>
-                        <div class="text-xs text-gray-500 dark:text-slate-400 mt-1">Required. New password</div>
+                        <div class="text-xs text-gray-500 dark:text-slate-400 mt-1">필수! 새 비밀번호를 입력해주세요</div>
                     </div>
                     <div class="mb-6 last:mb-0"><label class="block font-bold mb-2">Confirm password</label>
                         <div class="">
@@ -143,7 +137,7 @@ import { reactive } from 'vue'
                                         </path>
                                     </svg></span></div>
                         </div>
-                        <div class="text-xs text-gray-500 dark:text-slate-400 mt-1">Required. New password one more time
+                        <div class="text-xs text-gray-500 dark:text-slate-400 mt-1">필수! 새 비밀번호 확인
                         </div>
                     </div>
                 </div>

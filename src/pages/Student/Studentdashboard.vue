@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import axios from 'axios';
 import { useRouter } from 'vue-router';
 import Datepicker from 'vue3-datepicker';
 import { useStudentStore } from '../../stores/useStudentStore'
@@ -34,13 +35,11 @@ const handleSubmit = async (event) => {
   const data = Object.fromEntries(formData.entries());
 
   try {
-    const response = await fetch('/api/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+   const response = await axios.post('/api/submit', data, {
+         headers: {
+            'Content-Type': 'application/json',
+         },
+      });
 
     if (response.ok) {
       console.log('Form submitted successfully');

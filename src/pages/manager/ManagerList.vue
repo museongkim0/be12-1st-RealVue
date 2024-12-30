@@ -1,9 +1,9 @@
 <template>
-<div style="background-color: whitesmoke;"
-class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
+  <div style="background-color: whitesmoke;"
+    class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
     <div class="manager-list-container">
       <h1 class="page-title">매니저 관리</h1>
-  
+
       <!-- 매니저 테이블 -->
       <div class="table-section">
         <div class="table-header">
@@ -36,45 +36,72 @@ class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg
                 </button>
               </td>
               <td>
-                <button @click.stop="deleteManager(manager)" class="delete-button">매니저 삭제</button>
+                <button @click.stop="showDeleteConfirmModal(manager)" class="delete-button">매니저 삭제</button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-  
+
       <!-- 매니저 등록 모달 -->
       <div v-if="showRegisterModal" class="modal-overlay" @click="closeRegisterModal">
         <div class="modal-content" @click.stop>
-          <h3 class="modal-title">매니저 등록</h3>
+          <div class="modal-header">
+            <h3 class="modal-title">매니저 등록</h3>
+            <button class="close-button" @click="closeRegisterModal">&times;</button>
+          </div>
           <form @submit.prevent="registerManager">
-            <div class="form-group">
-              <label for="name">이름</label>
-              <input v-model="newManager.name" id="name" type="text" required />
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="name">이름</label>
+                <input v-model="newManager.name" id="name" type="text" required />
+              </div>
+              <div class="form-group">
+                <label for="contact">연락처</label>
+                <input v-model="newManager.contact" id="contact" type="text" required />
+              </div>
+              <div class="form-group">
+                <label for="assigned-classes">담당 반</label>
+                <input v-model="newManager.assignedClasses" id="assigned-classes" type="text" required />
+              </div>
+              <div class="form-group">
+                <label for="permission">권한 여부</label>
+                <select v-model="newManager.permission" id="permission" required>
+                  <option :value="true">Yes</option>
+                  <option :value="false">No</option>
+                </select>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="contact">연락처</label>
-              <input v-model="newManager.contact" id="contact" type="text" required />
+            <div class="modal-footer">
+              <button type="submit" class="submit-button">등록</button>
+              <button type="button" class="close-modal-button" @click="closeRegisterModal">취소</button>
             </div>
-            <div class="form-group">
-              <label for="assigned-classes">담당 반</label>
-              <input v-model="newManager.assignedClasses" id="assigned-classes" type="text" required />
-            </div>
-            <div class="form-group">
-              <label for="permission">권한 여부</label>
-              <select v-model="newManager.permission" id="permission" required>
-                <option :value="true">Yes</option>
-                <option :value="false">No</option>
-              </select>
-            </div>
-            <button type="submit" class="submit-button">등록</button>
-            <button type="button" class="close-modal-button" @click="closeRegisterModal">취소</button>
           </form>
         </div>
       </div>
+
+      <!-- 매니저 삭제 확인 모달 -->
+      <div v-if="showDeleteConfirmModalVisible" class="modal-overlay" @click="closeDeleteConfirmModal">
+        <div class="modal-content" @click.stop>
+          <div class="modal-header">
+            <h3 class="modal-title">삭제 확인</h3>
+            <button class="close-button" @click="closeDeleteConfirmModal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>
+              정말로 <strong>{{ managerToDelete?.name }}</strong> 매니저를 삭제하시겠습니까?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button class="delete-button" @click="deleteManager(managerToDelete)">확인</button>
+            <button class="close-modal-button" @click="closeDeleteConfirmModal">취소</button>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
-  </template>
+  </div>
+</template>
+
   
   <script>
   export default {
@@ -92,9 +119,38 @@ class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg
             id: 2,
             name: "박매니저",
             contact: "010-5678-1234",
-            assignedClasses: "B반, C반",
+            assignedClasses: "B반",
             permission: false,
           },
+          {
+            id: 3,
+            name: "최매니저",
+            contact: "010-1236-5678",
+            assignedClasses: "C반",
+            permission: true,
+          },
+          {
+            id: 4,
+            name: "정매니저",
+            contact: "010-5238-1237",
+            assignedClasses: "D반",
+            permission: false,
+          },
+          {
+            id: 5,
+            name: "이매니저",
+            contact: "010-8121-5218",
+            assignedClasses: "E반",
+            permission: true,
+          },
+          {
+            id: 6,
+            name: "총괄매니저",
+            contact: "010-5678-7776",
+            assignedClasses: "A반, B반, C반, D반, E반",
+            permission: false,
+          },
+          
         ],
         showRegisterModal: false,
         newManager: {
@@ -103,31 +159,39 @@ class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg
           assignedClasses: "",
           permission: true,
         },
+        showDeleteConfirmModalVisible: false,
+        managerToDelete: null,
       };
     },
     methods: {
-      togglePermission(manager) {
-        manager.permission = !manager.permission;
-      },
-      openRegisterModal() {
-        this.showRegisterModal = true;
-      },
-      closeRegisterModal() {
-        this.showRegisterModal = false;
-      },
-      registerManager() {
-        this.managers.push({
-          ...this.newManager,
-          id: Date.now(),
-        });
-        this.newManager = { name: "", contact: "", assignedClasses: "", permission: true };
-        this.closeRegisterModal();
-      },
-      deleteManager(manager) {
-        this.managers = this.managers.filter((m) => m.id !== manager.id);
-        alert(`${manager.name} 매니저를 삭제했습니다.`);
-      },
+    openRegisterModal() {
+      this.showRegisterModal = true;
     },
+    closeRegisterModal() {
+      this.showRegisterModal = false;
+    },
+    registerManager() {
+      this.managers.push({ ...this.newManager, id: Date.now() });
+      this.newManager = { name: "", contact: "", assignedClasses: "", permission: true };
+      this.closeRegisterModal();
+    },
+    showDeleteConfirmModal(manager) {
+      this.managerToDelete = manager;
+      this.showDeleteConfirmModalVisible = true;
+    },
+    closeDeleteConfirmModal() {
+      this.managerToDelete = null;
+      this.showDeleteConfirmModalVisible = false;
+    },
+    deleteManager(manager) {
+      this.managers = this.managers.filter((m) => m.id !== manager.id);
+      this.closeDeleteConfirmModal();
+      alert(`${manager.name} 매니저를 삭제했습니다.`);
+    },
+    togglePermission(manager) {
+      manager.permission = !manager.permission;
+    },
+  },
   };
   </script>
   
@@ -268,5 +332,105 @@ class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg
     font-weight: bold;
     margin-bottom: 10px;
   }
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 16px;
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+.modal-body {
+  padding: 16px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px;
+  background-color: #f7f7f7;
+  border-top: 1px solid #ddd;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #2980b9;
+}
+
+.close-modal-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.close-modal-button:hover {
+  background-color: #c0392b;
+}
+
+.modal-body label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.modal-body input, .modal-body select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.modal-body input:focus, .modal-body select:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
+}
   </style>
   

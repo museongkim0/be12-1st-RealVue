@@ -6,21 +6,47 @@ const route = useRoute();
 const examId = route.params.id;
 
 const examDetails = ref({
-  subject: "수학",
+  subject: "Vue.js",
   participants: 26,
   total: 30,
   average: 75,
   failed: 5,
   students: [
-    { id: 1, name: "Alice", score: 85, submissionTime: "2024-12-27 14:23:45" },
-    { id: 2, name: "Bob", score: 60, submissionTime: "2024-12-27 14:50:12" },
-    { id: 3, name: "Charlie", score: 70, submissionTime: "2024-12-27 15:10:30" },
-  ],
+  {"id": 1, "name": "학생 01", "score": 66, "submissionTime": "2024-12-30 17:08:14", "isPassed" : "N"},
+  {"id": 2, "name": "학생 02", "score": 70, "submissionTime": "2024-12-30 17:40:07" , "isPassed" : "Y"},
+  {"id": 3, "name": "학생 03", "score": 78, "submissionTime": "2024-12-30 17:33:55" , "isPassed" : "Y"},
+  {"id": 4, "name": "학생 04", "score": 70, "submissionTime": "2024-12-30 17:20:27" , "isPassed" : "Y"},
+  {"id": 5, "name": "학생 05", "score": 77, "submissionTime": "2024-12-30 17:29:04" , "isPassed" : "Y"},
+  {"id": 6, "name": "학생 06", "score": 73, "submissionTime": "2024-12-30 17:12:47" , "isPassed" : "Y"},
+  {"id": 7, "name": "학생 07", "score": 68, "submissionTime": "2024-12-30 17:28:58" , "isPassed" : "N"},
+  {"id": 8, "name": "학생 08", "score": 75, "submissionTime": "2024-12-30 17:07:48" , "isPassed" : "Y"},
+  {"id": 9, "name": "학생 09", "score": 69, "submissionTime": "2024-12-30 17:38:26" , "isPassed" : "N"},
+  {"id": 10, "name": "학생 10", "score": 73, "submissionTime": "2024-12-30 17:48:25" , "isPassed" : "Y"},
+  {"id": 11, "name": "학생 11", "score": 70, "submissionTime": "2024-12-30 17:16:02" , "isPassed" : "Y"},
+  {"id": 12, "name": "학생 12", "score": 82, "submissionTime": "2024-12-30 17:19:25" , "isPassed" : "Y"},
+  {"id": 13, "name": "학생 13", "score": 71, "submissionTime": "2024-12-30 17:39:01" , "isPassed" : "Y"},
+  {"id": 14, "name": "학생 14", "score": 77, "submissionTime": "2024-12-30 17:42:32" , "isPassed" : "Y"},
+  {"id": 15, "name": "학생 15", "score": 72, "submissionTime": "2024-12-30 17:19:18" , "isPassed" : "Y"},
+  {"id": 16, "name": "학생 16", "score": 75, "submissionTime": "2024-12-30 17:43:09" , "isPassed" : "Y"},
+  {"id": 17, "name": "학생 17", "score": 69, "submissionTime": "2024-12-30 17:23:56" , "isPassed" : "N"},
+  {"id": 18, "name": "학생 18", "score": 70, "submissionTime": "2024-12-30 17:48:26" , "isPassed" : "Y"},
+  {"id": 19, "name": "학생 19", "score": 82, "submissionTime": "2024-12-30 17:46:10" , "isPassed" : "Y"},
+  {"id": 20, "name": "학생 20", "score": 69, "submissionTime": "2024-12-30 17:02:17" , "isPassed" : "N"},
+  {"id": 21, "name": "학생 21", "score": 78, "submissionTime": "2024-12-30 17:22:44" , "isPassed" : "Y"},
+  {"id": 22, "name": "학생 22", "score": 75, "submissionTime": "2024-12-30 17:32:21" , "isPassed" : "Y"},
+  {"id": 23, "name": "학생 23", "score": 77, "submissionTime": "2024-12-30 17:31:36" , "isPassed" : "Y"},
+  {"id": 24, "name": "학생 24", "score": 78, "submissionTime": "2024-12-30 17:48:37" , "isPassed" : "Y"},
+  {"id": 25, "name": "학생 25", "score": 74, "submissionTime": "2024-12-30 17:27:45" , "isPassed" : "Y"},
+  {"id": 26, "name": "학생 26", "score": 81, "submissionTime": "2024-12-30 17:14:59" , "isPassed" : "Y"},
+ ],
 });
+/* */
 </script>
 
 
 <template>
+    <div style="background-color: whitesmoke;"
+    class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
     <div class="container">
       <h1 class="exam-title">{{ examDetails.subject }} 시험 정보</h1>
       <div class="exam-stats">
@@ -44,6 +70,7 @@ const examDetails = ref({
             <th>학생 이름</th>
             <th>점수</th>
             <th>제출 시간</th>
+            <th>통과 여부</th>
           </tr>
         </thead>
         <tbody>
@@ -52,9 +79,11 @@ const examDetails = ref({
             <td>{{ student.name }}</td>
             <td>{{ student.score }}</td>
             <td>{{ student.submissionTime }}</td>
+            <td>{{ student.isPassed }}</td>
           </tr>
         </tbody>
       </table>
+    </div>
     </div>
   </template>
   

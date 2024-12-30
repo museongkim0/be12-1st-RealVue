@@ -4,9 +4,9 @@ import PageNavi from './PageNavi.vue';
 
 const boardHeaders = ref(["글번호", "제목", "작성자", "작성일"]);
 const boardData = ref([
-  { id: 1, title: "프론트 엔드 시험 안내", author: "매니저1", date: "2024-12-26" },
+  { id: 3, title: "프론트 엔드 시험 안내", author: "매니저1", date: "2024-12-26" },
   { id: 2, title: "크리스마스 이벤트 안내", author: "매니저1", date: "2024-12-25" },
-  { id: 3, title: "화장실 수리 안내", author: "매니저2", date: "2024-12-24" },
+  { id: 1, title: "화장실 수리 안내", author: "매니저2", date: "2024-12-24" },
 ]);
 
 const userHeaders = ref(["번호", "이름", "연락처", "이메일"]);

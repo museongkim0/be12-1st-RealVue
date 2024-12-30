@@ -17,9 +17,12 @@ const route = useRoute();
     v-if="!route.meta?.hideAside"
   ></component>  <div class="layout">
 
+
     <div class="main-content">
       <router-view></router-view>
     </div>
   </div>
 </template>
  
+<style scoped>
+</style>

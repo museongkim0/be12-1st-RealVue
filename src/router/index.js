@@ -11,15 +11,23 @@ import { h } from 'vue';
 import Studentdashboard from '../pages/Student/Studentdashboard.vue';
 import BootcampInfo from '../pages/Student/BootcampInfo.vue';
 import ManagerDashboard from '../pages/manager/ManagerDashboard.vue';
-import List from '../pages/manager/List.vue';
 import StudentList from '../pages/manager/StudentList.vue';
 import InstructorList from '../pages/manager/InstructorList.vue';
 import ManagerList from '../pages/manager/ManagerList.vue';
 import AttendanceManage from '../pages/manager/AttendanceManage.vue';
-import InstructorDash from '../pages/Instructor/InstructorDash.vue';
+
+import InstructorDash from '../pages/instructor/InstructorDash.vue';
+
+import ExamList from '../pages/manager/ExamList.vue';
+import ExamDetails from '../pages/manager/ExamDetails.vue';
+
+
+
 import InstStudInform from '../pages/Instructor/InstStudInform.vue';
 import StudentAside from '../pages/Student/StudentAside.vue';
 import bootcampList from '../pages/bootcampList.vue';
+
+
 
 import bbboard from '../pages/board/bbboard.vue';
 import notice from '../pages/board/notice.vue';
@@ -32,6 +40,7 @@ import deleteboard from '../pages/board/deleteboard.vue';
 
 import common from '../pages/commondashboard.vue';
 
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -41,14 +50,26 @@ const router = createRouter({
         {
             path: '/studentdashboard',
             component: Studentdashboard,
-            meta: { asideComponent: StudentAside, hideAside: false }, // StudentAside를 항상 사용
-        },
+
+            meta: { asideComponent: StudentAside  ,hideAside: false }, // StudentAside를 항상 사용
+        },     
+
+          
+
         { path: '/inst/dashboard', component: InstructorDash },
         { path: '/inst/studinform', component: InstStudInform },
         { path: '/manager/dashboard', component: ManagerDashboard },
         { path: '/manager/studentList', component: StudentList },
         { path: '/manager/instructorList', component: InstructorList },
         { path: '/manager/managerList', component: ManagerList },
+
+        { path: '/manager/attendanceManage', component: AttendanceManage},
+
+        { path: '/manager/examList', component: ExamList},
+        { path: '/manager/examDetails', component: ExamDetails},
+
+        { path: '/bootcamp', component : bootcampList },
+
         { path: '/manager/attendanceManage', component: AttendanceManage },
 
         { path: '/bootcamp', component : bootcampList },
@@ -63,6 +84,7 @@ const router = createRouter({
 
         { path: '/common', component: common },
         { path: '/bootcampInfo', component: BootcampInfo },
+
 
 
         // { path: '/c', component: Create },

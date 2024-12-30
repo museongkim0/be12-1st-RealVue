@@ -34,45 +34,43 @@ import common from '../pages/commondashboard.vue';
 
 const router = createRouter({
     history: createWebHistory(),
-    routes : [
+    routes: [
         { path: '/a', component: FormsView },
-        { path: '/', component: LoginForm , meta: {hideAside: true , hideNav : true} },
-        { path: '/Signup', component: SignupForm , meta: {hideAside: true , hideNav : true} },
+        { path: '/', component: LoginForm, meta: { hideAside: true, hideNav: true } },
+        { path: '/Signup', component: SignupForm, meta: { hideAside: true, hideNav: true } },
         {
             path: '/studentdashboard',
             component: Studentdashboard,
-            meta: { asideComponent: StudentAside  ,hideAside: false }, // StudentAside를 항상 사용
-        },     
+            meta: { asideComponent: StudentAside, hideAside: false }, // StudentAside를 항상 사용
+        },
         { path: '/inst/dashboard', component: InstructorDash },
         { path: '/inst/studinform', component: InstStudInform },
         { path: '/manager/dashboard', component: ManagerDashboard },
         { path: '/manager/studentList', component: StudentList },
         { path: '/manager/instructorList', component: InstructorList },
         { path: '/manager/managerList', component: ManagerList },
-        { path: '/manager/attendanceManage', component: AttendanceManage},
+        { path: '/manager/attendanceManage', component: AttendanceManage },
 
-   { path: '/bootcamp', component : bootcampList },
-        { path: '/board/bbboard', component : bbboard },
-        { path: '/board/bbnoticeboard', component : bbnoticeboard },
-        { path: '/board/boardform', component : boardform },
-        { path: '/board/deleteboard', component : deleteboard },
-        { path: '/board/freeboard', component : freeboard },
-        { path: '/board/managerboard', component : managerboard },
-        { path: '/board/notice', component : notice },
-        { path: '/board/bbnoticeboard', component : bbnoticeboard },
+        { path: '/bootcamp', component: bootcampList },
+        { path: '/board/bbboard', component: bbboard },
+        { path: '/board/bbnoticeboard', component: bbnoticeboard },
+        { path: '/board/boardform', component: boardform },
+        { path: '/board/deleteboard', component: deleteboard },
+        { path: '/board/freeboard', component: freeboard },
+        { path: '/board/managerboard', component: managerboard },
+        { path: '/board/notice', component: notice },
+        { path: '/board/bbnoticeboard', component: bbnoticeboard },
 
+        { path: '/common', component: common },
+        { path: '/bootcampInfo', component: BootcampInfo },
 
-        { path: '/bootcamp', component : bootcampList },
-        {path : '/common', component : common},
-        { path:'/bootcampInfo', component: BootcampInfo},
-    
 
         // { path: '/c', component: Create },
         // { path: '/d', component: Signup },
         // { path: '/e', component: Login },
         // { path: '/f', component: Create },
         // { path: '/g', component: Signup }
-        
+
     ]
 })
 

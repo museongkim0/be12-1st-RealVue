@@ -3,6 +3,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import axios from 'axios';
 
 const login = ref('');
 const password = ref('');
@@ -10,16 +11,14 @@ const password = ref('');
 const handleSubmit = async (event) => {
   event.preventDefault();
   
-  const response = await fetch('/api/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
+  const response = await axios.post('/api/login', {
       login: login.value,
       password: password.value,
-    }),
-  });
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
   if (response.ok) {
     console.log('Login successful');

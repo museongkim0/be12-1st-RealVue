@@ -1,18 +1,29 @@
 <script setup>
 import { ref } from 'vue';
+import PageNavi from './PageNavi.vue';
 
 const boardHeaders = ref(["글번호", "제목", "작성자", "작성일"]);
 const boardData = ref([
-  { id: 1, title: "Vue.js Tutorial", author: "John", date: "2024-12-26" },
-  { id: 2, title: "JavaScript Basics", author: "Jane", date: "2024-12-25" },
-  { id: 3, title: "Advanced CSS", author: "Alice", date: "2024-12-24" },
+  { id: 1, title: "프론트 엔드 시험 안내", author: "매니저1", date: "2024-12-26" },
+  { id: 2, title: "크리스마스 이벤트 안내", author: "매니저1", date: "2024-12-25" },
+  { id: 3, title: "화장실 수리 안내", author: "매니저2", date: "2024-12-24" },
 ]);
 
 const userHeaders = ref(["번호", "이름", "연락처", "이메일"]);
 const userData = ref([
-  { id: 1, name: "Alice", role: "010-2312-5123", email: "alice@example.com" },
-  { id: 2, name: "Bob", role: "010-2345-6637", email: "bob@example.com" },
-  { id: 3, name: "Charlie", role: "010-1235-7912", email: "charlie@example.com" },
+  { id: 1, name: "학생1", role: "010-2312-5123", email: "student01@example.com" },
+  { id: 2, name: "학생2", role: "010-2345-6637", email: "student02@example.com" },
+  { id: 3, name: "학생3", role: "010-1235-7912", email: "student03@example.com" },
+]);
+const instructorData = ref([
+  { id: 1, name: "강사1", role: "010-2152-5612", email: "instructor01@example.com" },
+  { id: 2, name: "강사2", role: "010-7245-2135", email: "instructor02@example.com" },
+  { id: 3, name: "강사3", role: "010-1564-7812", email: "instructor03@example.com" },
+]);
+const managerData = ref([
+  { id: 1, name: "매니저1", role: "010-8238-9513", email: "manager01@example.com" },
+  { id: 2, name: "매니저2", role: "010-0482-2348", email: "manager02@example.com" },
+  { id: 3, name: "매니저3", role: "010-3294-9371", email: "manager03@example.com" },
 ]);
 
 const examData = ref([
@@ -44,48 +55,56 @@ const recentExamSummary = ref({
 </script>
 
 <template>
-    
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-    <!-- 출석 카드 -->
-    <router-link to="/manager/attendanceManage">
-        <div class="card">
-        <h3 class="card-title">출석 현황</h3>
-        <p class="card-stat">
-            출석 인원: {{ attendanceData.present }} / {{ attendanceData.total }}
-        </p>
-        <progress
-            class="attendance-progress"
-            :value="attendanceData.present"
-            :max="attendanceData.total"
-            style="width: 100%;"
-        ></progress>
-        <p class="card-percentage">
-            {{ Math.round((attendanceData.present / attendanceData.total) * 100) }}%
-        </p>
-        </div>
-    </router-link>
-    <!-- 중요 공지 카드 -->
-    <router-link :to="'/notice'" class="card-link">
-      <div class="card">
-        <h3 class="card-title">중요 공지</h3>
-        <ul class="card-list">
-          <li v-for="notice in importantNotices" :key="notice.id" class="card-item">
-            {{ notice.title }} ({{ notice.date }})
-          </li>
-        </ul>
-      </div>
-    </router-link>
+    <div style="background-color: whitesmoke;"
+    class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
+    <div
+  style="margin: 30px auto;" 
+  class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6 max-w-6xl"
+>
+  <!-- 출석 카드 -->
+  <router-link to="/manager/attendanceManage">
+    <div class="card">
+      <h3 class="card-title">출석 현황</h3>
+      <p class="card-stat">
+        출석 인원: {{ attendanceData.present }} / {{ attendanceData.total }}
+      </p>
+      <progress
+        class="attendance-progress"
+        :value="attendanceData.present"
+        :max="attendanceData.total"
+        style="width: 100%;"
+      ></progress>
+      <p class="card-percentage">
+        {{ Math.round((attendanceData.present / attendanceData.total) * 100) }}%
+      </p>
+    </div>
+  </router-link>
+  <!-- 중요 공지 카드 -->
+  <router-link :to="'/notice'" class="card-link">
+    <div class="card">
+      <h3 class="card-title">중요 공지</h3>
+      <ul class="card-list">
+        <li
+          v-for="notice in importantNotices"
+          :key="notice.id"
+          class="card-item"
+        >
+          {{ notice.title }} ({{ notice.date }})
+        </li>
+      </ul>
+    </div>
+  </router-link>
+  <!-- 최근 시험 결과 요약 카드 -->
+  <router-link :to="`/exam/${recentExamSummary.id}`" class="card-link">
+    <div class="card">
+      <h3 class="card-title">최근 시험 결과</h3>
+      <p class="card-stat">시험명: {{ recentExamSummary.title }}</p>
+      <p class="card-stat">평균 점수: {{ recentExamSummary.averageScore }}점</p>
+      <p class="card-stat">통과율: {{ recentExamSummary.passRate }}%</p>
+    </div>
+  </router-link>
+</div>
 
-    <!-- 최근 시험 결과 요약 카드 -->
-    <router-link :to="`/exam/${recentExamSummary.id}`" class="card-link">
-      <div class="card">
-        <h3 class="card-title">최근 시험 결과</h3>
-        <p class="card-stat">시험명: {{ recentExamSummary.title }}</p>
-        <p class="card-stat">평균 점수: {{ recentExamSummary.averageScore }}점</p>
-        <p class="card-stat">통과율: {{ recentExamSummary.passRate }}%</p>
-      </div>
-    </router-link>
-  </div>
 
   <div class="container">
     <!-- 시험 섹션 -->
@@ -142,6 +161,7 @@ const recentExamSummary = ref({
       </table>
     </div>
 
+    <div>
     <!-- 학생 목록 테이블 -->
     <div style="margin-top: 20px;" class="table-header">
       <h2 class="table-title">학생 목록</h2>
@@ -177,7 +197,12 @@ const recentExamSummary = ref({
         </tbody>
       </table>
     </div>
+    <div>
+        <PageNavi></PageNavi>
+    </div>
+</div>
 
+<div>
     <div style="margin-top: 20px;" class="table-header">
       <h2 class="table-title">강사 목록</h2>
       <router-link to="/manager/instructorList">
@@ -203,7 +228,7 @@ const recentExamSummary = ref({
           </tr>
         </thead>
         <tbody>
-          <tr v-for="row in userData" :key="row.id">
+          <tr v-for="row in instructorData" :key="row.id">
             <td>{{ row.id }}</td>
             <td>{{ row.name }}</td>
             <td>{{ row.role }}</td>
@@ -212,7 +237,12 @@ const recentExamSummary = ref({
         </tbody>
       </table>
     </div>
+    <div>
+        <PageNavi/>
+    </div>
+</div>
 
+<div style="margin-bottom: 20px;">
     <div style="margin-top: 20px;" class="table-header">
       <h2 class="table-title">매니저 목록</h2>
       <router-link to="/manager/managerList">
@@ -238,7 +268,7 @@ const recentExamSummary = ref({
           </tr>
         </thead>
         <tbody>
-          <tr v-for="row in userData" :key="row.id">
+          <tr v-for="row in managerData" :key="row.id">
             <td>{{ row.id }}</td>
             <td>{{ row.name }}</td>
             <td>{{ row.role }}</td>
@@ -248,6 +278,11 @@ const recentExamSummary = ref({
       </table>
     </div>
   </div>
+  </div>
+  <div>
+    <PageNavi/>
+  </div>
+</div>
 </template>
 
 <style scoped>

@@ -1,4 +1,6 @@
 <template>
+    <div style="background-color: whitesmoke;"
+    class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
     <div class="student-list-container">
       <h1 class="page-title">학생 관리</h1>
 
@@ -69,6 +71,7 @@
           <button class="close-modal-button" @click="closeModal">닫기</button>
         </div>
       </div>
+    </div>
     </div>
   </template>
   

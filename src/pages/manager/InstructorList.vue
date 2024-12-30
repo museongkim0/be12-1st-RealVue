@@ -1,4 +1,6 @@
 <template>
+<div style="background-color: whitesmoke;"
+class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
     <div class="instructor-list-container">
       <h1 class="page-title">강사 관리</h1>
   
@@ -74,6 +76,7 @@
         </div>
       </div>
     </div>
+</div>
   </template>
   
   <script>

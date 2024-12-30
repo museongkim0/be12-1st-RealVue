@@ -1,4 +1,6 @@
 <template>
+<div style="background-color: whitesmoke;"
+class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
     <div class="manager-list-container">
       <h1 class="page-title">매니저 관리</h1>
   
@@ -70,6 +72,7 @@
           </form>
         </div>
       </div>
+    </div>
     </div>
   </template>
   

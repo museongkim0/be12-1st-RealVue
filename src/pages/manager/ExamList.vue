@@ -35,6 +35,8 @@ const resetForm = () => {
 </script>
 
 <template>
+  <div style="background-color: whitesmoke;"
+  class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
   <div class="container">
     <div class="exam-list-header">
       <h1>전체 시험 리스트</h1>
@@ -80,6 +82,7 @@ const resetForm = () => {
         <button class="cancel-button" @click="showAddExamForm = false">취소</button>
       </div>
     </div>
+  </div>
   </div>
 </template>
 

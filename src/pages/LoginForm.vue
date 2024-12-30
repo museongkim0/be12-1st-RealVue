@@ -3,27 +3,28 @@
 
 <script setup>
 import { ref } from 'vue';
-import axios from 'axios';
+import { usememberStore } from '../stores/useMemberStore';
 
-const login = ref('');
-const password = ref('');
+const memberStore = usememberStore()
+const loginUser = ref({
+  nickname: '',
+  password: '',
+});
 
 const handleSubmit = async (event) => {
   event.preventDefault();
-  
-  const response = await axios.post('/api/login', {
-      login: login.value,
-      password: password.value,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
 
-  if (response.ok) {
-    console.log('Login successful');
-  } else {
-    console.error('Login failed');
+  try{
+    const result = await memberStore.Login(loginUser.value); 
+    if(result.isSuccess){
+      console.log('로그인 성공');
+    }
+    else{
+      console.log('로그인 실패');
+    }
+  }
+  catch (error) {
+    console.error('Login failed: ', error);
   }
 };
 
@@ -38,7 +39,7 @@ const handleSubmit = async (event) => {
             <div class="flex-1 p-6">
                 <div class="mb-6 last:mb-0"><label class="block font-bold mb-2">Login</label>
                     <div class="">
-                        <div class="relative"><input name="login" autocomplete="username" type="text"
+                        <div class="relative"><input v-model="loginUser.nickname" name="nickname" autocomplete="username" type="text"
                                 class="px-3 py-2 max-w-full focus:ring focus:outline-none border-gray-700 rounded w-full dark:placeholder-gray-400 h-12 border bg-white dark:bg-slate-800 pl-10"><span
                                 class="inline-flex justify-center items-center w-10 h-12 absolute top-0 left-0 z-10 pointer-events-none text-gray-500 dark:text-slate-400"><svg
                                     viewBox="0 0 24 24" width="16" height="16" class="inline-block">
@@ -51,7 +52,7 @@ const handleSubmit = async (event) => {
                 </div>
                 <div class="mb-6 last:mb-0"><label class="block font-bold mb-2">Password</label>
                     <div class="">
-                        <div class="relative"><input name="password" autocomplete="current-password" type="password"
+                        <div class="relative"><input v-model="loginUser.password" name="password" autocomplete="current-password" type="password"
                                 class="px-3 py-2 max-w-full focus:ring focus:outline-none border-gray-700 rounded w-full dark:placeholder-gray-400 h-12 border bg-white dark:bg-slate-800 pl-10"><span
                                 class="inline-flex justify-center items-center w-10 h-12 absolute top-0 left-0 z-10 pointer-events-none text-gray-500 dark:text-slate-400"><svg
                                     viewBox="0 0 24 24" width="16" height="16" class="inline-block">

@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import axios from 'axios';
 import { useRouter } from 'vue-router';
 import Datepicker from 'vue3-datepicker';
 import { useStudentStore } from '../stores/useStudentStore'
@@ -28,28 +29,26 @@ const toggleDrawer = () => {
 };
 
 const handleSubmit = async (event) => {
-  event.preventDefault();
+   event.preventDefault();
 
-  const formData = new FormData(event.target);
-  const data = Object.fromEntries(formData.entries());
+   const formData = new FormData(event.target);
+   const data = Object.fromEntries(formData.entries());
 
-  try {
-    const response = await fetch('/api/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+   try {
+      const response = await axios.post('/api/submit', data, {
+         headers: {
+            'Content-Type': 'application/json',
+         },
+      });
 
-    if (response.ok) {
-      console.log('Form submitted successfully');
-    } else {
-      console.error('Form submission failed');
-    }
-  } catch (error) {
-    console.error('Error submitting form:', error);
-  }finally { // 일단 임의로 팝업만 닫는다.
+      if (response.status === 200) {
+         console.log('Form submitted successfully');
+      } else {
+         console.error('Form submission failed');
+      }
+   } catch (error) {
+      console.error('Error submitting form:', error);
+   } finally { // 일단 임의로 팝업만 닫는다.
       window.location.reload();
    }
 };
@@ -167,14 +166,15 @@ const handleSubmit = async (event) => {
                            placeholder="사유 요약" required="">
                      </div>
                      <div class="col-span-2">
-                        <label for="date-range" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">날짜 범위</label>
+                        <label for="date-range" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">날짜
+                           범위</label>
                         <div class="flex items-center">
                            <Datepicker v-model="startDate" placeholder="Select start date" class="w-full" />
                            <span class="mx-4 text-gray-500">to</span>
                            <Datepicker v-model="endDate" placeholder="Select end date" class="w-full" />
                         </div>
                      </div>
-                     
+
                      <div class="col-span-2 ">
                         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> 목록
                         </label>
@@ -525,11 +525,11 @@ const handleSubmit = async (event) => {
          <ol class="relative border-s border-gray-200 dark:border-gray-700 p-6 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-lg"
             style="
     margin-left: 40px;
-">           
+">
             <h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">과제 현황</h1>
-            <div  class="px-6 py-4 text-right">
+            <div class="px-6 py-4 text-right">
                <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">더보기</a>
-               </div>
+            </div>
             <li v-for="assignment in usestudent.homework_check" :key="assignment.id" class="mb-10 ms-6">
                <span
                   class="absolute flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-blue-900 dark:text-blue-300">

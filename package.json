@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@mdi/js": "^7.0.96",
-    "axios": "^1.5.0",
+    "axios": "^1.7.9",
     "chart.js": "^4.4.0",
     "flowbite": "^2.5.2",
     "numeral": "^2.0.6",

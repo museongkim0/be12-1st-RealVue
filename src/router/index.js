@@ -15,10 +15,11 @@ import StudentList from '../pages/manager/StudentList.vue';
 import InstructorList from '../pages/manager/InstructorList.vue';
 import ManagerList from '../pages/manager/ManagerList.vue';
 import AttendanceManage from '../pages/manager/AttendanceManage.vue';
-import InstructorDash from '../pages/instructor/InstructorDash.vue';
+import InstructorDash from '../pages/Instructor/InstructorDash.vue';
 import InstStudInform from '../pages/Instructor/InstStudInform.vue';
 import StudentAside from '../pages/StudentAside.vue';
 import bootcampList from '../pages/bootcampList.vue';
+
 import bbboard from '../pages/board/bbboard.vue';
 import notice from '../pages/board/notice.vue';
 import freeboard from '../pages/board/freeboard.vue';
@@ -26,6 +27,9 @@ import managerboard from '../pages/board/managerboard.vue';
 import bbnoticeboard from '../pages/board/bbnoticeboard.vue';
 import boardform from '../pages/board/boardform.vue';
 import deleteboard from '../pages/board/deleteboard.vue';
+
+
+import common from '../pages/commondashboard.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -38,13 +42,14 @@ const router = createRouter({
             component: Studentdashboard,
             meta: { asideComponent: StudentAside  ,hideAside: false }, // StudentAside를 항상 사용
         },     
-           { path: '/inst/dashboard', component: InstructorDash },
+        { path: '/inst/dashboard', component: InstructorDash },
         { path: '/inst/studinform', component: InstStudInform },
         { path: '/manager/dashboard', component: ManagerDashboard },
         { path: '/manager/studentList', component: StudentList },
         { path: '/manager/instructorList', component: InstructorList },
         { path: '/manager/managerList', component: ManagerList },
         { path: '/manager/attendanceManage', component: AttendanceManage},
+
    { path: '/bootcamp', component : bootcampList },
         { path: '/board/bbboard', component : bbboard },
         { path: '/board/bbnoticeboard', component : bbnoticeboard },
@@ -54,6 +59,10 @@ const router = createRouter({
         { path: '/board/managerboard', component : managerboard },
         { path: '/board/notice', component : notice },
         { path: '/board/bbnoticeboard', component : bbnoticeboard },
+
+
+        { path: '/bootcamp', component : bootcampList },
+        {path : '/common', component : common}
 
         // { path: '/c', component: Create },
         // { path: '/d', component: Signup },

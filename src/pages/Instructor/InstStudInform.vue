@@ -7,7 +7,16 @@
     class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
         <section class="p-6 xl:max-w-6xl xl:mx-auto bg-gray-100 dark:bg-gray-900">
             <div class="flex">
-                <div class="grid grid-cols-2 gap-4 w-1/2 p-4 bg-gray-100 dark:bg-gray-900">
+                <!-- Card 0 -->
+                <div class="w-full md:w-1/2 p-4 flex flex-col">
+                    <div class="flex items-center p-4 bg-white rounded-lg shadow-md dark:bg-gray-800 flex-grow">
+                        <img class="w-16 h-16 rounded-full mr-4" src="https://randomuser.me/api/portraits/men/1.jpg" alt="Student Image">
+                        <div>
+                        <p class="text-xl font-bold text-gray-800 dark:text-gray-100">John Doe</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Email: johndoe@example.com</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Phone no.: 123-4567-8901</p>
+                    </div>
+                    </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4 w-1/2 p-4 bg-gray-100 dark:bg-gray-900">
                     <!-- Card 1 -->

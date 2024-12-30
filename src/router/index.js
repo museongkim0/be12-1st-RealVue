@@ -51,7 +51,7 @@ const router = createRouter({
         { path: '/manager/managerList', component: ManagerList },
         { path: '/manager/attendanceManage', component: AttendanceManage},
 
-   { path: '/bootcamp', component : bootcampList },
+    { path: '/bootcamp', component : bootcampList },
         { path: '/board/bbboard', component : bbboard },
         { path: '/board/bbnoticeboard', component : bbnoticeboard },
         { path: '/board/boardform', component : boardform },

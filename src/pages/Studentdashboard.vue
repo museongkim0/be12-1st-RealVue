@@ -1,11 +1,17 @@
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import Datepicker from 'vue3-datepicker';
 import { useStudentStore } from '../stores/useStudentStore'
 
 const usestudent = useStudentStore();
 const startDate = ref(null);
 const endDate = ref(null);
+const router = useRouter();
+
+// 임시. 백엔드가 없으므로 임의로 팝업을 닫는다.
+const showPopup1 = ref(false);
+const showPopup2 = ref(false);
 
 usestudent.getStudent();
 usestudent.get_curry();
@@ -21,7 +27,32 @@ const toggleDrawer = () => {
    isDrawerOpen.value = !isDrawerOpen.value;
 };
 
+const handleSubmit = async (event) => {
+  event.preventDefault();
 
+  const formData = new FormData(event.target);
+  const data = Object.fromEntries(formData.entries());
+
+  try {
+    const response = await fetch('/api/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      console.log('Form submitted successfully');
+    } else {
+      console.error('Form submission failed');
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error);
+  }finally { // 일단 임의로 팝업만 닫는다.
+      window.location.reload();
+   }
+};
 
 </script>
 
@@ -126,14 +157,14 @@ const toggleDrawer = () => {
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
 
 
-               <form class="p-4 md:p-5">
+               <form @submit.prevent="handleSubmit" class="p-4 md:p-5">
                   <div class="grid gap-4 mb-4 grid-cols-2">
                      <div class="col-span-2">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">휴가
                            신청</label>
                         <input type="text" name="name" id="name"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                           placeholder="Type product name" required="">
+                           placeholder="사유 요약" required="">
                      </div>
                      <div class="col-span-2">
                         <label for="date-range" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">날짜 범위</label>
@@ -188,7 +219,7 @@ const toggleDrawer = () => {
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
 
 
-               <form class="p-4 md:p-5">
+               <form @submit.prevent="handleSubmit" class="p-4 md:p-5">
                   <div class="grid gap-4 mb-4 grid-cols-2">
                      <div class="col-span-2">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">조퇴

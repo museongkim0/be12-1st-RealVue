@@ -31,7 +31,7 @@ const router = createRouter({
             component: Studentdashboard,
             meta: { asideComponent: StudentAside  ,hideAside: false }, // StudentAside를 항상 사용
         },     
-           { path: '/inst/dashboard', component: InstructorDash },
+        { path: '/inst/dashboard', component: InstructorDash },
         { path: '/inst/studinform', component: InstStudInform },
         { path: '/manager/dashboard', component: ManagerDashboard },
         { path: '/manager/studentList', component: StudentList },

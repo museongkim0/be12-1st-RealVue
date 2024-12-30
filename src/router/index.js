@@ -20,7 +20,18 @@ import InstructorDash from '../pages/Instructor/InstructorDash.vue';
 import InstStudInform from '../pages/Instructor/InstStudInform.vue';
 import StudentAside from '../pages/Student/StudentAside.vue';
 import bootcampList from '../pages/bootcampList.vue';
+
+import bbboard from '../pages/board/bbboard.vue';
+import notice from '../pages/board/notice.vue';
+import freeboard from '../pages/board/freeboard.vue';
+import managerboard from '../pages/board/managerboard.vue';
+import bbnoticeboard from '../pages/board/bbnoticeboard.vue';
+import boardform from '../pages/board/boardform.vue';
+import deleteboard from '../pages/board/deleteboard.vue';
+
+
 import common from '../pages/commondashboard.vue';
+
 const router = createRouter({
     history: createWebHistory(),
     routes : [
@@ -39,9 +50,23 @@ const router = createRouter({
         { path: '/manager/instructorList', component: InstructorList },
         { path: '/manager/managerList', component: ManagerList },
         { path: '/manager/attendanceManage', component: AttendanceManage},
+
+   { path: '/bootcamp', component : bootcampList },
+        { path: '/board/bbboard', component : bbboard },
+        { path: '/board/bbnoticeboard', component : bbnoticeboard },
+        { path: '/board/boardform', component : boardform },
+        { path: '/board/deleteboard', component : deleteboard },
+        { path: '/board/freeboard', component : freeboard },
+        { path: '/board/managerboard', component : managerboard },
+        { path: '/board/notice', component : notice },
+        { path: '/board/bbnoticeboard', component : bbnoticeboard },
+
+
         { path: '/bootcamp', component : bootcampList },
         {path : '/common', component : common},
         { path:'/bootcampInfo', component: BootcampInfo},
+    
+
         // { path: '/c', component: Create },
         // { path: '/d', component: Signup },
         // { path: '/e', component: Login },

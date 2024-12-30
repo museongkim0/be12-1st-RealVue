@@ -1,4 +1,6 @@
 <template>
+  <div style="background-color: whitesmoke;"
+  class="xl:pl-60 pt-14 min-h-screen w-full transition-position bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
     <div class="flex z-30 items-center flex-col justify-center overflow-hidden fixed inset-0" v-show="isOverlayVisible">
       <div
         class="overlay absolute inset-0 bg-gradient-to-tr opacity-90 dark:from-gray-700 dark:via-gray-900 dark:to-gray-700">
@@ -18,12 +20,8 @@
           </span>
           <h1 class="text-3xl leading-tight">글작성</h1>
         </div>
-        <router-link to="/board/managerboard">
-  <button
-    class="inline-flex justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border cursor-pointer rounded-none border-blue-600 dark:border-blue-500 ring-blue-300 dark:ring-blue-700 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 hover:border-blue-700 hover:dark:bg-blue-600 hover:dark:border-blue-600 py-2 px-4 mr-3 last:mr-0 mb-3 ml-auto text-sm">
-    <span class="px-2">목록</span>
-  </button>
-</router-link>
+        
+
 
       </section>
   
@@ -67,6 +65,7 @@
         </footer>
       </div>
     </section>
+  </div>
   </template>
   
   <script setup>

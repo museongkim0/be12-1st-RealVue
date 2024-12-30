@@ -2,7 +2,31 @@
 
 
 <script setup>
+import { ref } from 'vue';
 
+const login = ref('');
+const password = ref('');
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  
+  const response = await fetch('/api/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      login: login.value,
+      password: password.value,
+    }),
+  });
+
+  if (response.ok) {
+    console.log('Login successful');
+  } else {
+    console.error('Login failed');
+  }
+};
 
 </script>
 <template>
@@ -10,7 +34,7 @@
 <div class="bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
     <div
         class="flex min-h-screen items-center justify-center bg-gradient-to-tr from-purple-400 via-pink-500 to-red-500">
-        <form
+        <form @submit="handleSubmit"
             class="rounded-2xl flex-col dark:bg-slate-900/70 bg-white flex w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
             <div class="flex-1 p-6">
                 <div class="mb-6 last:mb-0"><label class="block font-bold mb-2">Login</label>

@@ -123,7 +123,7 @@ function showError(message) {
                     <div class="mb-6 last:mb-0"><label class="block font-bold mb-2">비밀번호 확인</label>
                         <div class="">
                             <div class="relative"><input name="confirm_password" autocomplete="current-password"
-                                    v-model="signupuser.password2" type="confirm_password"
+                                    v-model="signupuser.password2" type="password"
                                     class="px-3 py-2 max-w-full focus:ring focus:outline-none border-gray-700 rounded w-full dark:placeholder-gray-400 h-12 border bg-white dark:bg-slate-800 pl-10"><span
                                     class="inline-flex justify-center items-center w-10 h-12 absolute top-0 left-0 z-10 pointer-events-none text-gray-500 dark:text-slate-400"><svg
                                         viewBox="0 0 24 24" width="16" height="16" class="inline-block">
